@@ -35,11 +35,26 @@
 * **Rule:** Game logic must rely on Interfaces (`IAbility`, `ICombatResolver`), not concrete implementations.
 
 ### 1.2 Data-Driven Design
-* **Rule:** Behavior is Code; Content is Data.
-* **Implementation:** All static game data (Abilities, Classes, Items, Quests, NPCs) **MUST** be defined as `ScriptableObject`.
+* **Rule:** All game data (stats, dialogue, quests) must reside in `ScriptableObjects` (`RPGPlatform.Data`).
+* **Rule:** Runtime logic (`RPGPlatform.Systems`) acts upon data but never owns its "master copy".
+* **Goal:** 100% of game content should be modifiable without re-compiling C# code.
+
+### 1.3 Authoritative Knowledge Map
+When performing a task, always refer to the specific document governing that topic:
+
+| Topic Area | Source of Truth (Document) | Role |
+| :--- | :--- | :--- |
+| **Architectural Rules** | `System_Rules.md` | Core patterns, naming, and engineering policy. |
+| **Demo Content** | `PlayableDemoGuide.md` | Sun Eater lore, scene setup, and asset lists. |
+| **AI Content Workflow**| `Unity_Assistant_Guide.md` | Prompt engineering & AI tool usage. |
+| **API / Implementation**| `Engineering_Design.md` | Deep technical specs for subsystem logic. |
+| **Project Progress** | `Project_Walkthrough.md` | History of changes and stabilized state. |
+
+> [!IMPORTANT]
+> If a task spans multiple topics, you must load and synthesize all relevant docs from the table above.
 * **Constraint:** Hard-coded values (damage numbers, strings, mana costs) are forbidden in C# classes. They must be loaded from `Config` objects.
 
-### 1.3 The Command Pattern (Combat)
+### 1.4 The Command Pattern (Combat)
 * **Rule:** No direct state modification during the `Planning` phase.
 * **Implementation:** All combat actions (Attack, Move, Defend) must implement `ICombatCommand`.
 * **Flow:** `CombatManager` receives input -> creates Command -> pushes to `CommandHistory` -> Command calls `Execute()`.
