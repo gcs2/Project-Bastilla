@@ -18,18 +18,23 @@ The engine is located in `Assets/AxiomEngine`. All your game-specific data shoul
 
 ## 2. Automation Workflow (Vibe Coding)
 
-### Environment Generation (Unity Muse / ProBuilder)
-Instead of manual modeling, use the following "chunks" to generate your environment assets.
+### Environment Generation (Unity Muse)
+Unity Muse is your primary tool for environment props.
+1. **Open Muse**: In Unity, go to `Window > Muse` (Wait for it to load; it is separate from the `AI` menu).
+2. **Select Texture/Model**: Choose the generation type.
+3. **Paste Prompt**: Copy from below and hit Generate.
+4. **Save to Project**: When you find a "vibe" you like, save the asset directly into `Assets/AxiomEngine/GameSpecific/SunEater/Generated`.
 
 #### Prompt: Vorgossos Marketplace
 > "Low-poly sci-fi marketplace props, organic bio-architecture mixed with corroded metal, bioluminescent market stalls, dark greens and purples, grime-covered textures, Unity URP compatible."
 
-#### Integration Step:
-1. Open the **Axiom Asset Importer** (`Axiom > Generate Level Template`).
-2. Paste the generated assets into the `Generated` folder.
-3. Apply the `SunEater_Theme` materials.
+### Character Generation (Rosebud AI)
+Rosebud AI handles character fabrication and rigging.
+1. **Visit Rosebud**: Open the Rosebud AI web portal.
+2. **Text-to-Character**: Paste the character prompt.
+3. **Rigging**: Ensure "Unity Humanoid" is selected during export.
+4. **Import**: Place the downloaded `.fbx` into the `NPCs` folder. Axiom will automatically detect the rig if you name the file to match the NPC's `CombatantData` ID.
 
-### Character Generation (Rosebud AI / MetaHuman)
 #### Prompt: Chantry Inquisitor
 > "Humanoid character, monastic black robes with crimson trim, cybernetic eye, stern expression, rigged for Unity Humanoid skeleton."
 

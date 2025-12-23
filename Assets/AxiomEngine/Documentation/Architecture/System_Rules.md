@@ -11,19 +11,18 @@
 ---
 
 ## 0. ARCHITECTURAL POST-MORTEM (Lessons Learned)
-*Key takeaways from the Dec 2025 "Interface Drift" resolution.*
+*Key takeaways from the Dec 2025 "Interface Drift" resolution and Sun Eater Stabilization.*
 
-    - **Action**: Use a "Search and Synchronize" approach. Immediately search for all implementations of a modified interface and update them (even with empty/null returns) to prevent build blockage.
-3. **Namespace Hygiene in Tests**:
-    - **Pitfall**: Tests often lack the broad `using` directives needed for end-to-end integration (e.g., `Core.Dialogue`, `Systems.Combat`).
-    - **Rule**: Integration tests (`SystemTests`) should proactively include all core and system namespaces.
-4. **Markdown Bleed**:
-    - **Pitfall**: Accidentally including markdown code fences (```csharp) inside a .cs file will cause catastrophic compilation failure.
-    - **Rule**: Always verify file headers after multi-file edits.
-5. **The "Last Mile" Regression (Lesson 2)**:
-    - **Pitfall**: Renaming fields in a configuration object (`D20ResolverConfig`) without updating Example files that create instances of them via `CreateInstance`.
-    - **Pitfall**: Moving a type (`StatusEffectTemplate`) but failing to update fully-qualified references in other files (e.g., `RPGPlatform.Data.StatusEffectTemplate`).
-    - **Pitfall**: Incomplete interface synchronization (adding a method to a concrete class but forgetting to add it to the interface).
+1. **Interface Drift Resilience**: Use a "Search and Synchronize" approach. Immediately update all implementations of a modified interface (even with empty/null returns) to prevent build blockage.
+2. **Namespace Hygiene in Tests**: Integration tests (`SystemTests`) must proactively include all core and system namespaces to prevent "type not found" regressions in batch runs.
+3. **Markdown Bleed Prevention**: Always verify .cs file headers after multi-file edits to ensure markdown fences haven't accidentally leaked into the source.
+4. **The "Last Mile" Config Awareness**: Renaming fields in ScriptableObject configs (`D20ResolverConfig`) requires immediate updates to all `CreateInstance` calls in Examples.
+5. **Type Relocation Audits**: Moving a type (`StatusEffectTemplate`) requires a global search for fully-qualified references (e.g., `RPGPlatform.Data.StatusEffect`).
+6. **Interface/Concrete Sync**: Always add new methods to the Interface first, then implement in concrete classes, then update Mocks.
+7. **The Data-Logic Split**: Keep `ScriptableObject` definitions (Data) in `RPGPlatform.Data` and logic wrappers in `RPGPlatform.Systems` to avoid circular dependencies.
+8. **EditMode Integration**: `GameObject.Instantiate` is safe in EditMode tests ONLY if `Object.DestroyImmediate` is called in `[TearDown]`.
+9. **Cider-V Velocity**: Automated batch testing (`RunTests.ps1`) is the only way to maintain a "Stable Golden State" during rapid refactoring.
+10. **Automation Blueprints**: Use "One-Button Bootstrap" scripts (`AxiomDemoGenerator`) to ensure demo foundations are identical. Never manually configure core game data if it can be scripted.
 
 ---
 
@@ -118,7 +117,12 @@
 
 ### 6.2 Regression Awareness
 * **Mindset:** Assume that interface changes will break Mocks in `Tests/` and Examples in `Examples/`.
-* **Action:** Always search the codebase for implementations of modified interfaces immediately after the change.
+* **Action:**
+1. **Find a Prompt**: Look in `PlayableDemoGuide.md` (e.g., "Vorgossos Marketplace").
+2. **Choose Your Tool**:
+   - **Unity Muse**: Open via `Window > Muse` (if installed) or right-click in Project view > `Create > Muse`. It is NOT under `Window > AI`.
+   - **Rosebud AI / MetaHuman**: Use for *Characters* and *Animations* (web portal).
+* Always search the codebase for implementations of modified interfaces immediately after the change.
 * **Checklist:**
     - [ ] Update `MockCombatant` in `CombatTests.cs`
     - [ ] Update `MockCombatant` in `SystemTests.cs`
