@@ -16,24 +16,24 @@ The engine is located in `Assets/AxiomEngine`. All your game-specific data shoul
 
 ---
 
-## 2. Automation Workflow (Vibe Coding)
-
-### Environment Generation (Unity Muse)
-Unity Muse is your primary tool for environment props.
-1. **Open Muse**: In Unity, go to `Window > Muse` (Wait for it to load; it is separate from the `AI` menu).
-2. **Select Texture/Model**: Choose the generation type.
-3. **Paste Prompt**: Copy from below and hit Generate.
-4. **Save to Project**: When you find a "vibe" you like, save the asset directly into `Assets/AxiomEngine/GameSpecific/SunEater/Generated`.
+### Environment Generation (Unity AI / Muse)
+Unity AI (which includes Muse) is your primary tool for environment props and sprites.
+1. **Open Assistant**: In Unity, go to `Window > AI > Assistant`.
+2. **Interact**: Type your request (e.g., "Generate a sprite for a sci-fi market stall") or use the specific Muse Texture/Sprite generators if separate windows exist.
+3. **Save to Project**: Drag generated assets into `Assets/AxiomEngine/GameSpecific/SunEater/Generated`.
 
 #### Prompt: Vorgossos Marketplace
 > "Low-poly sci-fi marketplace props, organic bio-architecture mixed with corroded metal, bioluminescent market stalls, dark greens and purples, grime-covered textures, Unity URP compatible."
 
 ### Character Generation (Rosebud AI)
-Rosebud AI handles character fabrication and rigging.
-1. **Visit Rosebud**: Open the Rosebud AI web portal.
-2. **Text-to-Character**: Paste the character prompt.
-3. **Rigging**: Ensure "Unity Humanoid" is selected during export.
-4. **Import**: Place the downloaded `.fbx` into the `NPCs` folder. Axiom will automatically detect the rig if you name the file to match the NPC's `CombatantData` ID.
+Rosebud AI (rosebud.ai) handles character fabrication, rigging, and basic animations.
+1. **Visit rosebud.ai**: Log in to their web portal. (Check pricing; they usually offer a free tier with limited credits).
+2. **Text-to-Character**: Use their "Fabricator" tool and paste the character prompt.
+3. **Rigging & Export**: Select **FBX** as the format and **Unity Humanoid** as the rig type before downloading.
+4. **Import into Unity**: 
+   - Drag the `.fbx` file into `Assets/AxiomEngine/GameSpecific/SunEater/Data/NPCs`.
+   - In the FBX's **Inspector**, go to the **Rig** tab and set **Animation Type** to `Humanoid`. Hit **Apply**.
+5. **Axiom Linking**: Open your `NPC_Inquisitor` asset (`CombatantData`) and drag the imported character prefab into the **Prefab** slot.
 
 #### Prompt: Chantry Inquisitor
 > "Humanoid character, monastic black robes with crimson trim, cybernetic eye, stern expression, rigged for Unity Humanoid skeleton."

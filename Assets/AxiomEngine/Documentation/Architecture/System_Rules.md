@@ -120,8 +120,8 @@
 * **Action:**
 1. **Find a Prompt**: Look in `PlayableDemoGuide.md` (e.g., "Vorgossos Marketplace").
 2. **Choose Your Tool**:
-   - **Unity Muse**: Open via `Window > Muse` (if installed) or right-click in Project view > `Create > Muse`. It is NOT under `Window > AI`.
-   - **Rosebud AI / MetaHuman**: Use for *Characters* and *Animations* (web portal).
+   - **Unity AI (Muse)**: Open via `Window > AI > Assistant`. Use the chat interface to generate textures/sprites or get help with asset search.
+   - **Rosebud AI**: Use the web portal for *Characters* and *Animations*.
 * Always search the codebase for implementations of modified interfaces immediately after the change.
 * **Checklist:**
     - [ ] Update `MockCombatant` in `CombatTests.cs`
