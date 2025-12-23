@@ -11,11 +11,14 @@ Always frame your request within the Sun Eater universe:
 
 ## 2. Best Practices for Sun Eater Assets
 
-### 2.1 Textures & Sprites
-Avoid generic terms like "sci-fi wall". Use descriptive sensory language.
-- **Resolution**: Aim for 1024x1024 (standard) or 512x512 for UI icons.
-- **Style**: "Low-poly", "painterly", "photo-realistic", or "oil-rubbed".
-- **Keywords**: "Grime", "Bioluminescence", "Corroded Metal", "Pulsing Veins".
+### 2.1 The Texture Generation Workflow
+Based on the current Unity AI version, follow this path:
+1. **The Request**: Paste the prompt into the **Assistant** window.
+2. **The Result**: The Assistant will summarize the request and provide a **"Generate Texture"** button in the chat.
+3. **The Generation Window**: Clicking the button opens the **"New Texture"** window.
+   - **Dimensions**: Use the dropdown to select `1024 x 1024`.
+   - **Generation**: Click **Generate** inside this new window to see the preview.
+   - **Metadata**: Notice the Assistant provides an **AI-Tag** (C# block). You can use this to keep track of prompts tied to specific assets.
 
 ### 2.2 Example Prompts
 - **Merchant Stall**: "Generate a 2D isometric sprite of a sci-fi market stall. Materials: Weathered green tarp over a rusty steel frame. Details: Glowing neon tubes in teal, boxes of bioluminescent mushrooms in the corner. Style: Gritty cyberpunk."

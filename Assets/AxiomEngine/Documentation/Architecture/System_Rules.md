@@ -46,6 +46,8 @@ When performing a task, always refer to the specific document governing that top
 | :--- | :--- | :--- |
 | **Architectural Rules** | `System_Rules.md` | Core patterns, naming, and engineering policy. |
 | **Demo Content** | `PlayableDemoGuide.md` | Sun Eater lore, scene setup, and asset lists. |
+| **Technical Design** | `Technical_Design_Document.md`| Foundational logic and original platform specs. |
+| **Project Vision** | `KotOR_Vision_Guide.txt` | The original "Knights of the Old Republic" inspiration. |
 | **AI Content Workflow**| `Unity_Assistant_Guide.md` | Prompt engineering & AI tool usage. |
 | **API / Implementation**| `Engineering_Design.md` | Deep technical specs for subsystem logic. |
 | **Project Progress** | `Project_Walkthrough.md` | History of changes and stabilized state. |

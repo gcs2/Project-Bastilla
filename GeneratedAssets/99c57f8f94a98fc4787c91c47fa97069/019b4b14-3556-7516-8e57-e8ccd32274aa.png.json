@@ -1,0 +1,20 @@
+{
+    "asset": "99c57f8f94a98fc4787c91c47fa97069",
+    "fileName": "019b4b14-3556-7516-8e57-e8ccd32274aa.png",
+    "prompt": "Seamless PBR texture for a marketplace floor in a sci-fi RPG with a grimy bio-architecture aesthetic. The texture should feature corroded green copper plates fused with dark, pulsing organic veins, bioluminescent teal flecks, and grime-covered puddles. Style: Low-poly, high-detail texture map for Unity URP.",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "cd65fd178405a5b385e2202b08fe6b2b",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
