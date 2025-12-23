@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6453fc32d6703140a5c2113ec1ba9a3, type: 3}
+  m_Name: SunEater_GenreProfile
+  m_EditorClassIdentifier: Assembly-CSharp::RPGPlatform.Data.GenreProfile
+  GenreId: suneater
+  GenreName: 
+  DefaultLandingVideo: {fileID: 0}
+  DefaultLandingTimeline: {fileID: 0}
+  PrimaryColor: {r: 0.1, g: 0.8, b: 0.4, a: 1}
+  MainFont: {fileID: 0}
+  DefaultFont: {fileID: 0}
+  GlobalMusic: {fileID: 0}

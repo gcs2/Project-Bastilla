@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83b84f69b2e9944794b0f917f458630, type: 3}
+  m_Name: Conversation_VorgossosIntro
+  m_EditorClassIdentifier: Assembly-CSharp::RPGPlatform.Data.ConversationData
+  ConversationId: vorgossos_intro
+  SpeakerId: chantry_inquisitor
+  EntryNodeId: start
+  Nodes:
+  - NodeId: start
+    SpeakerID: 
+    SpeakerOverride: 
+    Text: Halt, traveler. The Chantry has questions regarding your recent neural-link
+      upgrades. Your soul reeks of heretical silicon.
+    VoiceOver: {fileID: 0}
+    Conditions: []
+    Effects: []
+    Responses:
+    - ResponseId: 
+      Text: '[Faith] I serve the Chantry. These upgrades are sanctioned.'
+      NextNodeId: end_peaceful
+      Conditions: []
+      DisplayType: 0
+    - ResponseId: 
+      Text: '[Heresy] My body is my own, Inquisitor. Stand aside.'
+      NextNodeId: end_hostile
+      Conditions: []
+      DisplayType: 0
+  - NodeId: end_peaceful
+    SpeakerID: 
+    SpeakerOverride: 
+    Text: Very well. But the Red Company will be watching your form closely.
+    VoiceOver: {fileID: 0}
+    Conditions: []
+    Effects: []
+    Responses: []
+  - NodeId: end_hostile
+    SpeakerID: 
+    SpeakerOverride: 
+    Text: Blasphemy! By the Emperor's light, you shall be purged!
+    VoiceOver: {fileID: 0}
+    Conditions: []
+    Effects: []
+    Responses: []
+  references:
+    version: 2
+    RefIds: []
