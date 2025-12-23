@@ -13,6 +13,7 @@ namespace RPGPlatform.Editor
     public class AxiomAssetImporter : EditorWindow
     {
         private string locationName = "New Vorgossos Area";
+        private EnvironmentProfile environmentProfile;
         private string promptText = "Generate sci-fi marketplace props...";
 
         [MenuItem("Axiom/Generate Level Template")]
@@ -26,6 +27,12 @@ namespace RPGPlatform.Editor
             GUILayout.Label("Sun Eater Level Generator", EditorStyles.boldLabel);
             
             locationName = EditorGUILayout.TextField("Location Name", locationName);
+            environmentProfile = (EnvironmentProfile)EditorGUILayout.ObjectField("Environment Profile", environmentProfile, typeof(EnvironmentProfile), false);
+
+            if (environmentProfile == null)
+            {
+                EditorGUILayout.HelpBox("Assign an Environment Profile to enable modular generation!", MessageType.Info);
+            }
             
             GUILayout.Space(10);
             GUILayout.Label("AI Prompt Helper (Copy/Paste to Muse/Rosebud)", EditorStyles.miniLabel);
@@ -57,46 +64,58 @@ namespace RPGPlatform.Editor
             GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
             floor.name = "MarketFloor_Auto";
             floor.transform.SetParent(env.transform);
-            floor.transform.localScale = new Vector3(5, 1, 5); // 50m x 50m
+            
+            Vector3 fScale = environmentProfile != null ? environmentProfile.FloorScale : new Vector3(5, 1, 5);
+            floor.transform.localScale = fScale;
 
             // Try to find the AI-generated texture
-            Texture2D floorTex = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/AxiomEngine/GameSpecific/SunEater/Data/New Texture.png");
+            Texture2D floorTex = environmentProfile != null && environmentProfile.FloorTexture != null 
+                ? environmentProfile.FloorTexture 
+                : AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/AxiomEngine/GameSpecific/SunEater/Data/New Texture.png");
+
             if (floorTex != null)
             {
                 Material floorMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 floorMat.mainTexture = floorTex;
-                floorMat.SetColor("_BaseColor", new Color(0.6f, 0.8f, 0.7f)); // Tint for extra vibe
+                floorMat.SetColor("_BaseColor", environmentProfile != null ? environmentProfile.FloorTint : new Color(0.6f, 0.8f, 0.7f));
                 
                 string matPath = $"Assets/AxiomEngine/GameSpecific/SunEater/Data/{locationName}_Floor.mat";
                 AssetDatabase.CreateAsset(floorMat, matPath);
                 floor.GetComponent<Renderer>().sharedMaterial = floorMat;
             }
 
-            // 4. Cinematic Lighting (Sun Eater Palette)
+            // 4. Cinematic Lighting
             GameObject lightGrid = new GameObject("Vibe_Lighting");
             lightGrid.transform.SetParent(root.transform);
             
-            // Teal Spotlight
-            GameObject tealLight = new GameObject("Light_Teal_Bloom");
+            GameObject tealLight = new GameObject("PrimaryVibeLight");
             tealLight.transform.SetParent(lightGrid.transform);
             tealLight.transform.position = new Vector3(0, 10, 0);
             Light l1 = tealLight.AddComponent<Light>();
             l1.type = LightType.Spot;
-            l1.color = new Color(0f, 0.8f, 0.8f);
-            l1.intensity = 50f;
-            l1.range = 30f;
+            l1.color = environmentProfile != null ? environmentProfile.PrimaryLightColor : new Color(0f, 0.8f, 0.8f);
+            l1.intensity = environmentProfile != null ? environmentProfile.LightIntensity : 50f;
+            l1.range = environmentProfile != null ? environmentProfile.LightRange : 30f;
             l1.spotAngle = 60f;
 
-            // 5. Primitive Market Stalls (Structural Vibe)
-            for (int i = 0; i < 3; i++)
+            // 5. Modular Props
+            int sCount = environmentProfile != null ? environmentProfile.StallCount : 3;
+            float sSpread = environmentProfile != null ? environmentProfile.StallSpread : 8f;
+
+            for (int i = 0; i < sCount; i++)
             {
-                GameObject stall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                stall.name = $"Market_Stall_{i}";
+                GameObject stall;
+                if (environmentProfile != null && environmentProfile.StallPrefab != null)
+                    stall = (GameObject)PrefabUtility.InstantiatePrefab(environmentProfile.StallPrefab);
+                else
+                    stall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+                stall.name = $"Market_Prop_{i}";
                 stall.transform.SetParent(env.transform);
-                stall.transform.position = new Vector3(Mathf.Sin(i * 2) * 8, 1.5f, Mathf.Cos(i * 2) * 8);
+                stall.transform.position = new Vector3(Mathf.Sin(i * (6.28f / sCount)) * sSpread, 1.5f, Mathf.Cos(i * (6.28f / sCount)) * sSpread);
                 stall.transform.localScale = new Vector3(3, 3, 3);
                 
-                if (floor.GetComponent<Renderer>().sharedMaterial != null)
+                if (floor.GetComponent<Renderer>().sharedMaterial != null && environmentProfile?.StallPrefab == null)
                     stall.GetComponent<Renderer>().sharedMaterial = floor.GetComponent<Renderer>().sharedMaterial;
             }
 

@@ -10,7 +10,7 @@ We did it! In a single, high-intensity session, **Project Bastilla** has evolved
 ### 🟢 Breakthrough: The "Vorgossos" Vibe
 Using the **Unity AI Assistant**, we successfully synthesized the first true visual asset for the Sun Eater demo: the **Marketplace Floor**. 
 
-![The First Vibe: Vorgossos Marketplace Floor and Automated Stalls](/C:/Users/zephy/.gemini/antigravity/brain/84bd0dfa-5f26-4c11-a5f7-77ae60603b73/uploaded_image_1766491929312.png)
+![The First Vibe: Vorgossos Marketplace Floor and Automated Stalls](../Images/3_boxes.png)
 *Above: The automated level generator in action—cinematic teal lighting, AI-textured floor, and procedural marketplace structure.*
 
 ---
