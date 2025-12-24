@@ -39,7 +39,8 @@ namespace RPGPlatform.Editor.TAV
 
         private void HandleLog(string logString, string stackTrace, LogType type)
         {
-            if (logString.StartsWith("[TAV]") || logString.StartsWith("[AxiomShell]"))
+            if (logString.StartsWith("[TAV]") || logString.StartsWith("[AxiomShell]") || 
+                logString.StartsWith("[STATE]") || logString.StartsWith("  ["))
             {
                 _log.Add(logString);
                 Repaint();

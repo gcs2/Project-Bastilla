@@ -88,7 +88,7 @@ namespace RPGPlatform.Editor.TAV
                     Debug.Log("[TAV] CHOICES:");
                     for (int i = 0; i < responses.Count; i++)
                     {
-                        Debug.Log($"  [{i}] {responses[i].Text}");
+                        Debug.Log($"[TAV]   [{i}] {responses[i].Text}");
                     }
                 }
             };
@@ -184,28 +184,28 @@ namespace RPGPlatform.Editor.TAV
 
         private static void PrintFullState()
         {
-            Debug.Log("=================================================");
-            Debug.Log("          CURRENT GAME STATE (TAV)               ");
-            Debug.Log("=================================================");
+            Debug.Log("[TAV] =================================================");
+            Debug.Log("[TAV]           CURRENT GAME STATE (TAV)               ");
+            Debug.Log("[TAV] =================================================");
             
             // Player Stats
-            Debug.Log($"[PLAYER] HP: {Player.Stats.CurrentHealth}/{Player.Stats.MaxHealth} | Team: {Player.Team}");
+            Debug.Log($"[STATE] PLAYER: HP {Player.Stats.CurrentHealth}/{Player.Stats.MaxHealth} | Team: {Player.Team}");
             
             // NPC Stats
-            Debug.Log($"[INQUISITOR] HP: {Inquisitor.Stats.CurrentHealth}/{Inquisitor.Stats.MaxHealth} | Team: {Inquisitor.Team}");
+            Debug.Log($"[STATE] INQUISITOR: HP {Inquisitor.Stats.CurrentHealth}/{Inquisitor.Stats.MaxHealth} | Team: {Inquisitor.Team}");
             
             // Morality
-            Debug.Log($"[MORALITY] Humanism: {Morality.GetAxisValue("humanism")}");
+            Debug.Log($"[STATE] MORALITY: Humanism {Morality.GetAxisValue("humanism")}");
             
             // Quests
             var activeQuests = Quests != null ? "Vorgossos Heretic (Active)" : "None";
-            Debug.Log($"[QUESTS] {activeQuests}");
+            Debug.Log($"[STATE] QUESTS: {activeQuests}");
             
             // Combat State
             var combatStatus = Combat.IsInCombat ? "IN COMBAT" : "EXPLORING";
-            Debug.Log($"[STATUS] {combatStatus}");
+            Debug.Log($"[STATE] STATUS: {combatStatus}");
             
-            Debug.Log("=================================================");
+            Debug.Log("[TAV] =================================================");
         }
 
         private class EditorDialogueRepository : IDialogueRepository
