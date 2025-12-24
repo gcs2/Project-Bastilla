@@ -1,6 +1,7 @@
 # SYSTEM_RULES.md (v1.2)
 **Project:** Axiom RPG Engine (Target: The Sun Eater)
 **Copyright:** (c) Geoffrey Salmon 2025
+**Repository:** https://github.com/gcs2/Project-Bastilla/
 **Tech Stack:** Unity 6 (2025) | C# | .NET Standard 2.1
 **Architecture:** Layered | Data-Driven (ScriptableObjects) | Command Pattern | Composition
 
@@ -26,6 +27,7 @@
 11. **Unity AI Toolkit Conflict**: The Unity AI Assistant (Muse) may throw `ArgumentException` if it encounters unknown categories like `Textures` during indexing. Ensure generated assets follow standard naming and search conventions to minimize toolkit friction.
 12. **Terminal Safety**: Avoid recursive `Remove-Item` or `dotnet build` on the root without explicit need. **NEVER** run or attempt to run commands on terminal that will result in deletions or data corruption risk.
 13. **The Spectacle Gap**: Architectural stability (tests/logic) does not equal a "Visual Spectacle." Every demo generator must prioritize silhouette, volumetric depth, and Environmental "Noise" to meet Sun Eater fidelity. (Ref: The Pill Incident).
+14. **Zero-Warning Protocol**: When implementing Mocks or Interfaces that require events which are unused in that specific class, always initialize them (e.g., `event Action OnX = delegate { };`) to silence compiler warnings (CS0067) while satisfying the contract.
 
 ---
 

@@ -30,11 +30,11 @@ namespace RPGPlatform.Tests
             public bool CanMove { get; set; } = true;
             public bool CanAct { get; set; } = true;
 
-            public event Action<DamageResult> OnDamageReceived;
-            public event Action<int> OnHealingReceived;
-            public event Action<IStatusEffect> OnEffectAdded;
-            public event Action<IStatusEffect> OnEffectRemoved;
-            public event Action OnDefeated;
+            public event Action<DamageResult> OnDamageReceived = delegate { };
+            public event Action<int> OnHealingReceived = delegate { };
+            public event Action<IStatusEffect> OnEffectAdded = delegate { };
+            public event Action<IStatusEffect> OnEffectRemoved = delegate { };
+            public event Action OnDefeated = delegate { };
 
             public void ApplyDamage(DamageResult d) { OnDamageReceived?.Invoke(d); }
             public void TakeDamage(int a, DamageType t) { ApplyDamage(new DamageResult { BaseDamage = a, Type = t }); }
@@ -72,8 +72,8 @@ namespace RPGPlatform.Tests
             public float CurrentStatMultiplier => 1f;
             public void AddXP(long amount) { CurrentXP += amount; OnXPChanged?.Invoke(CurrentXP, XPToNextLevel); }
             public bool IsTierUnlocked(string t) => true;
-            public event Action<int> OnLevelUp;
-            public event Action<string> OnTierChanged;
+            public event Action<int> OnLevelUp = delegate { };
+            public event Action<string> OnTierChanged = delegate { };
             public event Action<long, long> OnXPChanged;
         }
 

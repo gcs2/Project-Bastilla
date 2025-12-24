@@ -112,11 +112,11 @@ namespace RPGPlatform.Tests
             public void RemoveStatusEffect(string effectId) {}
             public IStatusEffect ApplyStatusEffect(StatusEffectTemplate template, ICombatant source) => null;
             public void TickEffects() {}
-            public event System.Action<DamageResult> OnDamageReceived;
-            public event System.Action<int> OnHealingReceived;
-            public event System.Action<IStatusEffect> OnEffectAdded;
-            public event System.Action<IStatusEffect> OnEffectRemoved;
-            public event System.Action OnDefeated;
+            public event System.Action<DamageResult> OnDamageReceived = delegate { };
+            public event System.Action<int> OnHealingReceived = delegate { };
+            public event System.Action<IStatusEffect> OnEffectAdded = delegate { };
+            public event System.Action<IStatusEffect> OnEffectRemoved = delegate { };
+            public event System.Action OnDefeated = delegate { };
         }
 
         private class MockResolver : ICombatResolver

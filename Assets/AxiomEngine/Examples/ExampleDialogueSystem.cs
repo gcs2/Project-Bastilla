@@ -36,11 +36,11 @@ namespace RPGPlatform.Examples
             public void RemoveStatusEffect(string e) {}
             public IStatusEffect ApplyStatusEffect(StatusEffectTemplate t, ICombatant s) => null;
             public void TickEffects() {}
-            public event System.Action<DamageResult> OnDamageReceived;
-            public event System.Action<int> OnHealingReceived; 
-            public event System.Action<IStatusEffect> OnEffectAdded; 
-            public event System.Action<IStatusEffect> OnEffectRemoved; 
-            public event System.Action OnDefeated;
+            public event System.Action<DamageResult> OnDamageReceived = delegate { };
+            public event System.Action<int> OnHealingReceived = delegate { }; 
+            public event System.Action<IStatusEffect> OnEffectAdded = delegate { }; 
+            public event System.Action<IStatusEffect> OnEffectRemoved = delegate { }; 
+            public event System.Action OnDefeated = delegate { };
         }
 
         private class MockQuestService : IQuestService

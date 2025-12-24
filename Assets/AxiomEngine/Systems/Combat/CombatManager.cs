@@ -58,7 +58,7 @@ namespace RPGPlatform.Systems.Combat
         public event Action<bool> OnCombatEnded;  // true = victory
         public event Action<CombatPhase> OnPhaseChanged;
         public event Action<ICombatant> OnTurnStarted;
-        public event Action<ICombatCommand, CommandResult> OnCommandExecuted;
+        public event Action<ICombatCommand, CommandResult> OnCommandExecuted = delegate { };
         public event Action<ICombatant, DamageResult> OnDamageDealt;
         public event Action<ICombatant> OnCombatantDefeated;
         
