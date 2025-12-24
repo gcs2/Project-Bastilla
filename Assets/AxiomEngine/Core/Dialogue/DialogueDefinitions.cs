@@ -53,6 +53,7 @@ namespace RPGPlatform.Core.Dialogue
     {
         void StartConversation(string conversationId, ICombatant player, ICombatant speaker);
         void SelectResponse(int responseIndex);
+        void EndConversation();
         string CurrentConversationId { get; }
         event Action<DialogueNode> OnNodeStart;
         event Action OnConversationEnd;

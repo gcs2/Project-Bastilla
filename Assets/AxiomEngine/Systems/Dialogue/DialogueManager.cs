@@ -161,7 +161,7 @@ namespace RPGPlatform.Systems.Dialogue
             return valid;
         }
 
-        private void EndConversation()
+        public void EndConversation()
         {
             Debug.Log("[DialogueManager] Conversation Ended");
             _currentConversation = null;
