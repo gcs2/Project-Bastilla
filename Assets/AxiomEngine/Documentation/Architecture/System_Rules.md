@@ -24,7 +24,8 @@
 9. **Cider-V Velocity**: Automated batch testing (`RunTests.ps1`) is the only way to maintain a "Stable Golden State" during rapid refactoring.
 10. **Automation Blueprints**: Use "One-Button Bootstrap" scripts (`AxiomDemoGenerator`) to ensure demo foundations are identical. Never manually configure core game data if it can be scripted.
 11. **Unity AI Toolkit Conflict**: The Unity AI Assistant (Muse) may throw `ArgumentException` if it encounters unknown categories like `Textures` during indexing. Ensure generated assets follow standard naming and search conventions to minimize toolkit friction.
-12. **Terminal Safety**: Avoid recursive `Remove-Item` or `dotnet build` on the root without explicit need, as batch mode environments may lack specific SDKs or have locked files.
+12. **Terminal Safety**: Avoid recursive `Remove-Item` or `dotnet build` on the root without explicit need. **NEVER** run or attempt to run commands on terminal that will result in deletions or data corruption risk.
+13. **The Spectacle Gap**: Architectural stability (tests/logic) does not equal a "Visual Spectacle." Every demo generator must prioritize silhouette, volumetric depth, and Environmental "Noise" to meet Sun Eater fidelity. (Ref: The Pill Incident).
 
 ---
 
