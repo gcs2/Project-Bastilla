@@ -117,15 +117,41 @@ namespace RPGPlatform.Editor
             GameObject env = new GameObject("Environment");
             env.transform.SetParent(root.transform);
 
+            // 1. The Textured Floor
             GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
             floor.name = "Vorgossos_Market_Floor";
             floor.transform.SetParent(env.transform);
             floor.transform.localScale = new Vector3(10, 1, 10);
 
-            // Dark Violet Material
             Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
             mat.SetColor("_BaseColor", new Color(0.1f, 0.05f, 0.2f));
+            
+            // Try to load the renamed texture
+            Texture2D tex = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/AxiomEngine/GameSpecific/SunEater/Data/VibeFloor_Diffuse.png");
+            if (tex != null)
+            {
+                mat.mainTexture = tex;
+                mat.mainTextureScale = new Vector2(4, 4);
+            }
             floor.GetComponent<Renderer>().sharedMaterial = mat;
+
+            // 2. Procedural Props (Monoliths/Stalls)
+            for (int i = 0; i < 8; i++)
+            {
+                GameObject pillar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                pillar.name = $"HighMatter_Pillar_{i}";
+                pillar.transform.SetParent(env.transform);
+                
+                float angle = i * Mathf.PI * 0.25f;
+                pillar.transform.position = new Vector3(Mathf.Cos(angle) * 12f, 5f, Mathf.Sin(angle) * 12f);
+                pillar.transform.localScale = new Vector3(2f, 10f, 2f);
+                
+                Material pMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                pMat.SetColor("_BaseColor", Color.black);
+                pMat.SetColor("_EmissionColor", new Color(0f, 0.4f, 0.4f) * 2f);
+                pMat.EnableKeyword("_EMISSION");
+                pillar.GetComponent<Renderer>().sharedMaterial = pMat;
+            }
 
             return env;
         }
@@ -142,28 +168,33 @@ namespace RPGPlatform.Editor
             profile.name = "Vorgossos_Spectacle_Profile";
             
             var bloom = profile.Add<Bloom>();
-            bloom.intensity.Override(5f);
-            bloom.threshold.Override(1f);
-            bloom.tint.Override(new Color(0f, 0.8f, 0.8f)); // Teal bloom
+            bloom.intensity.Override(12f); // Cranked for spectacle
+            bloom.threshold.Override(0.8f);
+            bloom.tint.Override(new Color(0.2f, 1f, 0.9f));
+
+            var chromatic = profile.Add<ChromaticAberration>();
+            chromatic.intensity.Override(0.5f);
 
             var vignette = profile.Add<Vignette>();
-            vignette.intensity.Override(0.45f);
-            vignette.smoothness.Override(1f);
+            vignette.intensity.Override(0.55f);
+            vignette.smoothness.Override(0.8f);
 
             AssetDatabase.CreateAsset(profile, "Assets/AxiomEngine/GameSpecific/SunEater/Data/Demo/Spectacle_Profile.asset");
             vol.sharedProfile = profile;
 
             // 2. Atmospheric Lighting
             RenderSettings.fog = true;
-            RenderSettings.fogColor = new Color(0.1f, 0.2f, 0.2f);
-            RenderSettings.fogDensity = 0.05f;
-            RenderSettings.ambientLight = new Color(0.05f, 0.05f, 0.1f);
+            RenderSettings.fogColor = new Color(0.02f, 0.1f, 0.12f);
+            RenderSettings.fogDensity = 0.08f;
+            RenderSettings.ambientLight = new Color(0.02f, 0.02f, 0.05f);
 
             GameObject sun = GameObject.Find("Directional Light");
             if (sun != null)
             {
-                sun.GetComponent<Light>().color = new Color(0.3f, 0.1f, 0.4f); // Purple sun
-                sun.GetComponent<Light>().intensity = 0.5f;
+                var l = sun.GetComponent<Light>();
+                l.color = new Color(0.4f, 0.1f, 0.6f);
+                l.intensity = 0.3f;
+                l.shadows = LightShadows.Soft;
             }
         }
 
@@ -172,25 +203,34 @@ namespace RPGPlatform.Editor
             GameObject npc = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             npc.name = "NPC_Chantry_Inquisitor";
             npc.transform.SetParent(root.transform);
-            npc.transform.position = new Vector3(0, 1, 8);
+            npc.transform.position = new Vector3(0, 1.2f, 8);
             
             var combatant = npc.AddComponent<RPGPlatform.Systems.Combat.Combatant>();
-            combatant.Initialize(data, false, 1); // Team 1 = Enemy
+            combatant.Initialize(data, false, 1); 
 
             Material incMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-            incMat.SetColor("_BaseColor", Color.black);
-            incMat.SetColor("_EmissionColor", Color.red * 2f);
+            incMat.SetColor("_BaseColor", new Color(0.05f, 0.05f, 0.05f));
+            incMat.SetColor("_EmissionColor", Color.red * 4f);
             incMat.EnableKeyword("_EMISSION");
             npc.GetComponent<Renderer>().sharedMaterial = incMat;
 
-            // Add a backlight for silhouette
-            GameObject backlight = new GameObject("Inquisitor_Backlight");
+            // Inner "Core" light for presence
+            GameObject core = new GameObject("Energy_Core");
+            core.transform.SetParent(npc.transform);
+            core.transform.localPosition = Vector3.up * 0.5f;
+            var cl = core.AddComponent<Light>();
+            cl.color = Color.red;
+            cl.intensity = 15f;
+            cl.range = 3f;
+
+            // Rim Light
+            GameObject backlight = new GameObject("Inquisitor_Rimlight");
             backlight.transform.SetParent(npc.transform);
-            backlight.transform.position = npc.transform.position + new Vector3(0, 2, 2);
+            backlight.transform.position = npc.transform.position + new Vector3(0, 2, 3);
             var l = backlight.AddComponent<Light>();
-            l.color = new Color(0f, 1f, 1f); // Teal rim light
-            l.intensity = 20f;
-            l.range = 5f;
+            l.color = new Color(0.4f, 1f, 1f); 
+            l.intensity = 40f;
+            l.range = 10f;
 
             return npc;
         }

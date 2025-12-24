@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83b84f69b2e9944794b0f917f458630, type: 3}
+  m_Name: Dialogue_Inquisitor
+  m_EditorClassIdentifier: Assembly-CSharp::RPGPlatform.Data.ConversationData
+  ConversationId: inquisitor_spectacle
+  SpeakerId: 
+  EntryNodeId: root
+  Nodes:
+  - NodeId: root
+    SpeakerID: 
+    SpeakerOverride: 
+    Text: Stop, Traveler. I sense the hum of forbidden silicon beneath your skin.
+      The Chantry does not tolerate such... incompatibility.
+    VoiceOver: {fileID: 0}
+    Conditions: []
+    Effects: []
+    Responses:
+    - ResponseId: 
+      Text: I am a seeker of knowledge, not a heretic.
+      NextNodeId: logic
+      Conditions: []
+      DisplayType: 0
+    - ResponseId: 
+      Text: '[Unsheathe High-Matter Sword] Then let the Silence take you.'
+      NextNodeId: combat
+      Conditions: []
+      DisplayType: 0
+  - NodeId: logic
+    SpeakerID: 
+    SpeakerOverride: 
+    Text: Knowledge is the path to ruin without Faith.
+    VoiceOver: {fileID: 0}
+    Conditions: []
+    Effects: []
+    Responses: []
+  - NodeId: combat
+    SpeakerID: 
+    SpeakerOverride: 
+    Text: So be it. The Emperor's justice is swift.
+    VoiceOver: {fileID: 0}
+    Conditions: []
+    Effects: []
+    Responses: []
+  references:
+    version: 2
+    RefIds: []

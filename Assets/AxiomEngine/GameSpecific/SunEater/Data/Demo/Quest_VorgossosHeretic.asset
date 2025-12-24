@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e184b0c97df681543858e990ae31cb3d, type: 3}
+  m_Name: Quest_VorgossosHeretic
+  m_EditorClassIdentifier: Assembly-CSharp::RPGPlatform.Data.QuestData
+  QuestId: vorgossos_heretic
+  DisplayName: The Vorgossos Heretic
+  Description: 
+  Objectives:
+  - Description: Decide the fate of the Chantry Inquisitor.
+    TargetCount: 1
+  MinLevel: 0
+  RequiredQuestIds: []
+  XPReward: 2500
+  CurrencyReward: 0

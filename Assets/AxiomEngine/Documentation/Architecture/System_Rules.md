@@ -174,3 +174,14 @@ When performing a task, always refer to the specific document governing that top
 2. **Read Twice, Code Once**: Before fixing a test, read the test file in its entirety to understand the intended behavior.
 3. **Incremental Progress**: Add print statements/logs to the engine or tests to verify state during the batch run.
 4. **Transparency in Failure**: If a test reveals a fundamental design flaw, document it in the Post-Mortem section immediately. 
+
+---
+
+## 9. VISUAL SPECTACLE STANDARDS
+*The engine must not only work; it must look Sun Eater ready.*
+
+1. **No Bare Primitives**: Demos must never rely on pure Capsules or Cubes without specific emissive/shader overrides or particle effects.
+2. **Atmospheric Depth**: Every generated scene MUST include a configured `Volume` with Bloom and Vignette, and `RenderSettings.fog` enabled.
+3. **Prop Ingestion**: Level generators must prioritize spawning modular prop clusters (Stalls, Pillars, Debris) over flat geometry.
+4. **Cinematic Lighting**: Use three-point lighting or rim-light offsets for primary NPCs to establish silhouette depth.
+5. **Texture Density**: Avoid default Unity materials. Generators must attempt to map AI-generated or mottled textures to break up surface repetition.
