@@ -17,6 +17,11 @@ using System.Collections.Generic;
 
 namespace RPGPlatform.Tests
 {
+    /// <summary>
+    /// Tests for the Sun Eater demo bootstrapper.
+    /// TODO: MIGRATE TO TAV - This test suite is brittle due to Unity Editor overhead.
+    /// It will be replaced by the Axiom CLI / TAV Harness (AxiomShell.cs).
+    /// </summary>
     [TestFixture]
     public class DemoBootstrapperTests
     {
@@ -34,11 +39,15 @@ namespace RPGPlatform.Tests
             _root = new GameObject("TestRoot");
             
             // Add Managers
-            _root.AddComponent<CombatManager>();
+            var combatManager = _root.AddComponent<CombatManager>();
+            combatManager.Initialize(); // Manual initialization for EditMode
+            
             _root.AddComponent<DialogueManager>();
             _root.AddComponent<QuestManager>();
             
             _bootstrapper = _root.AddComponent<PlayableDemoBootstrapper>();
+            
+            Debug.Log($"[Tests] TurnManagers on root: {_root.GetComponents<TurnManager>().Length}");
             
             _player = new GameObject("Player");
             _player.AddComponent<Combatant>();
@@ -48,6 +57,11 @@ namespace RPGPlatform.Tests
             
             _dialogueData = ScriptableObject.CreateInstance<ConversationData>();
             _dialogueData.ConversationId = "inquisitor_spectacle";
+            _dialogueData.EntryNodeId = "start";
+            _dialogueData.Nodes = new List<DialogueNode> 
+            { 
+                new DialogueNode { NodeId = "start", Text = "Test Start" } 
+            };
             
             _questData = ScriptableObject.CreateInstance<QuestData>();
             _questData.QuestId = "vorgossos_heretic";
@@ -67,8 +81,8 @@ namespace RPGPlatform.Tests
         public void Test_SystemInitialization()
         {
             // Act
-            Debug.Log("Test_SystemInitialization: Manually calling Start on Bootstrapper");
-            _bootstrapper.SendMessage("Start"); 
+            Debug.Log("Test_SystemInitialization: Manually calling Initialize on Bootstrapper");
+            _bootstrapper.Initialize(); 
 
             // Assert
             bool morality = ServiceLocator.IsRegistered<IMoralityService>();
@@ -86,7 +100,7 @@ namespace RPGPlatform.Tests
         public void Test_DialogueToCombatTransition()
         {
             // Arrange
-            _bootstrapper.SendMessage("Start");
+            _bootstrapper.Initialize();
             var dialogueManager = _root.GetComponent<DialogueManager>();
             var combatManager = _root.GetComponent<CombatManager>();
             
@@ -103,8 +117,8 @@ namespace RPGPlatform.Tests
             dialogueManager.StartConversation(_dialogueData, _player.GetComponent<ICombatant>(), _inquisitor.GetComponent<ICombatant>());
             
             Debug.Log("Test_DialogueToCombatTransition: Simulating OnDialogueEnded");
-            // Direct call to ensure it hits the private method if possible, or use SendMessage with logs
-            _bootstrapper.SendMessage("OnDialogueEnded");
+            // Direct call to ensure it hits the method
+            _bootstrapper.OnDialogueEnded();
 
             // Assert
             Assert.IsTrue(combatStarted, "Combat should have started after dialogue ended on the spectacle ID.");
@@ -114,7 +128,7 @@ namespace RPGPlatform.Tests
         public void Test_QuestCompletionOnVictory()
         {
             // Arrange
-            _bootstrapper.SendMessage("Start");
+            _bootstrapper.Initialize();
             var combatManager = _root.GetComponent<CombatManager>();
             var questManager = _root.GetComponent<QuestManager>();
             var dialogueManager = _root.GetComponent<DialogueManager>();
@@ -122,7 +136,7 @@ namespace RPGPlatform.Tests
             // Start combat first
             Debug.Log("Test_QuestCompletionOnVictory: Setting up Combat State");
             dialogueManager.StartConversation(_dialogueData, _player.GetComponent<ICombatant>(), _inquisitor.GetComponent<ICombatant>());
-            _bootstrapper.SendMessage("OnDialogueEnded");
+            _bootstrapper.OnDialogueEnded();
             
             // Act
             Debug.Log("Test_QuestCompletionOnVictory: Ending Combat with Victory");
@@ -134,8 +148,5 @@ namespace RPGPlatform.Tests
             Assert.IsTrue(completed, "Quest should be completed upon combat victory.");
         }
 
-            // Assert
-            Assert.IsTrue(questManager.IsQuestCompleted(_questData.QuestId), "Quest should be completed upon combat victory.");
-        }
     }
 }

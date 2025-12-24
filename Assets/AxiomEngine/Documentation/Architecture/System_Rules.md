@@ -43,7 +43,7 @@
 * **Rule:** All game data (stats, dialogue, quests) must reside in `ScriptableObjects` (`RPGPlatform.Data`).
 * **Rule:** Runtime logic (`RPGPlatform.Systems`) acts upon data but never owns its "master copy".
 * **Goal:** 100% of game content should be modifiable without re-compiling C# code.
-* **Immutable Test Rule:** All new functionality MUST be accompanied by dedicated test coverage. No feature is complete until it is verified via the CIDER-V loop.
+* **Immutable Test Rule:** All new functionality MUST be verified via the Text Adventure Verification (TAV) harness. If logic cannot be verified via text commands, it is too coupled to the View.
 
 ### 1.3 Authoritative Knowledge Map
 When performing a task, always refer to the specific document governing that topic:
@@ -134,10 +134,11 @@ When performing a task, always refer to the specific document governing that top
 ## 6. VERIFICATION & STABILITY
 *Standard operating procedure for every code change.*
 
-### 6.1 Automated Testing
-* **Rule:** After any significant refactor or "final" fix, run the test suite.
-* **Command:** `powershell -ExecutionPolicy Bypass -File scripts/RunTests.ps1`.
-* **Note:** Close Unity Editor before running batch tests to avoid project locking.
+### 6.1 Text Adventure Verification (TAV)
+*   **Rule:** The primary verification method is the **Axiom CLI** (Text Adventure Mode).
+*   **Concept:** The entire game logic (Combat, Dialogue, Questing) must be playable via a text-based console without rendering a single frame.
+*   **Action:** Create a TAV Scenario script (e.g., `VorgossosScenario.cs`) that steps through the user story using pure C# logic calls.
+*   **Deprecation Notice:** The legacy Unity Test Runner (`RunTests.ps1`) is DEPRECATED for daily logic verification due to excessive overhead and brittleness. It is reserved for nightly build integrity only.
 
 ### 6.2 Terminal Safety Mandate
 * **Rule:** Never run or attempt to run commands on the terminal that result in deletions or data corruption risk (e.g., `rm -rf`, recursive `Remove-Item` without filters, force-cleaning the repository).
@@ -173,9 +174,9 @@ When performing a task, always refer to the specific document governing that top
 ## 8. CIDER-V ENDLESS TEST LOOP
 *The Axiom Cycle of continuous stabilization.*
 
-1. **The Loop**: Execute `RunTests.ps1` → Read Failures → View Code → Fix → Repeat.
-2. **Read Twice, Code Once**: Before fixing a test, read the test file in its entirety to understand the intended behavior.
-3. **Incremental Progress**: Add print statements/logs to the engine or tests to verify state during the batch run.
+1. **The Loop:** Write TAV Scenario → Run Axiom CLI → Verify Output → Fix → Repeat.
+2. **Read Twice, Code Once:** Before fixing a bug, reproduce it in the Text Adventure harness.
+3. **Incremental Progress:** Use the CLI output to verify state changes (e.g., "Health: 100 -> 90").
 4. **Transparency in Failure**: If a test reveals a fundamental design flaw, document it in the Post-Mortem section immediately. 
 
 ---

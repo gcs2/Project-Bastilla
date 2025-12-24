@@ -41,13 +41,13 @@ namespace SunEater.Demo
 
         private void Start()
         {
-            InitializeSystems();
+            Initialize();
             
             // Auto-start the demo loop after a brief delay
             Invoke(nameof(StartInquisitorDialogue), 2f);
         }
 
-        private void InitializeSystems()
+        public void Initialize()
         {
             _player = _playerObj.GetComponent<Combatant>();
             _inquisitor = _inquisitorObj.GetComponent<Combatant>();
@@ -82,7 +82,7 @@ namespace SunEater.Demo
             Debug.Log($"<color=red><b>INQUISITOR:</b></color> {node.Text}");
         }
 
-        private void OnDialogueEnded()
+        public void OnDialogueEnded()
         {
             // Simple logic: if we hit the 'combat' node, we fight. 
             // In a real system, we'd check node flags.

@@ -8,6 +8,8 @@
 
 This is the standard loop for all development. **Do not commit** without running this.
 
+Remove-Item unity_test_log.txt -ErrorAction SilentlyContinue; powershell -ExecutionPolicy Bypass -File scripts/RunTests.ps1 -QuitAfterTests $true
+
 ### -> Step 1: Run The Suite
 ```powershell
 .\scripts\RunTests.ps1

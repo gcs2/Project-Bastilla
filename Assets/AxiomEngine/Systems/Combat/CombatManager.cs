@@ -76,24 +76,19 @@ namespace RPGPlatform.Systems.Combat
         
         private void Awake()
         {
-            InitializeSystems();
-        }
-        
-        private void Update()
-        {
-            if (!IsInCombat) return;
-            
-            // State machine handles its own updates via Unity lifecycle
+            Initialize();
         }
         
         #endregion
         
         #region Initialization
         
-        private void InitializeSystems()
+        public void Initialize()
         {
+            Debug.Log("[CombatManager] InitializeSystems Started");
             // Initialize combat resolver
             _resolver = new D20CombatResolver(_resolverConfig);
+            Debug.Log("[CombatManager] Resolver Created");
             
             // Initialize positioning system
             if (_config != null && _config.UseGridPositioning)
@@ -110,12 +105,15 @@ namespace RPGPlatform.Systems.Combat
                     _config?.FreeFormArenaRadius ?? 30f
                 );
             }
+            Debug.Log("[CombatManager] Positioning Created");
             
             // Initialize turn manager
             _turnManager = gameObject.AddComponent<TurnManager>();
+            Debug.Log($"[CombatManager] TurnManager Added: {_turnManager != null}");
             _turnManager.Initialize(_resolver);
             
             // State machine will be created when combat starts
+            Debug.Log("[CombatManager] InitializeSystems Completed");
         }
         
         /// <summary>
