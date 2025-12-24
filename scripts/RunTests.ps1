@@ -35,6 +35,7 @@ Write-Host ">>> Project Path: $projectPath"
 # 2. Execute Unity in Batch Mode
 $logFile = "unity_test_log.txt"
 if (Test-Path $logFile) { Remove-Item $logFile }
+if (Test-Path $ResultFile) { Remove-Item $ResultFile }
 
 $args = @(
     "-batchmode",

@@ -18,14 +18,14 @@ namespace RPGPlatform.Tests
     {
         private GameObject _holder;
         private QuestManager _manager;
-        private MockProgressionService _progression;
+        private TestingCommon.MockProgressionService _progression;
 
         [SetUp]
         public void Setup()
         {
             _holder = new GameObject("TestHolder");
             _manager = _holder.AddComponent<QuestManager>();
-            _progression = new MockProgressionService();
+            _progression = new TestingCommon.MockProgressionService();
         }
 
         [TearDown]
@@ -63,24 +63,29 @@ namespace RPGPlatform.Tests
             Assert.AreEqual(500, _progression.CurrentXP);
         }
 
-        private class MockProgressionService : IProgressionService
+        [Test]
+        public void Test_QuestPrerequisites()
         {
-            public long CurrentXP { get; set; } = 0;
-            public int CurrentLevel => 1;
-            public long XPToNextLevel => 1000;
-            public string CurrentTierId => "initiate";
-            public float CurrentStatMultiplier => 1f;
+            var q1 = ScriptableObject.CreateInstance<QuestData>();
+            q1.QuestId = "q1";
+            
+            var q2 = ScriptableObject.CreateInstance<QuestData>();
+            q2.QuestId = "q2";
+            q2.RequiredQuestIds.Add("q1");
 
-            public void AddXP(long amount) 
-            {
-                CurrentXP += amount;
-            }
+            _manager.Initialize(_progression, new List<QuestData> { q1, q2 });
 
-            public bool IsTierUnlocked(string t) => true;
+            // 1. Try start Q2 (should fail)
+            _manager.AcceptQuest("q2");
+            Assert.AreEqual(0, _manager.GetQuestStep("q2"));
 
-            public event System.Action<int> OnLevelUp;
-            public event System.Action<string> OnTierChanged;
-            public event System.Action<long, long> OnXPChanged;
+            // 2. Complete Q1
+            _manager.AcceptQuest("q1");
+            _manager.CompleteQuest("q1");
+
+            // 3. Try start Q2 again (should succeed)
+            _manager.AcceptQuest("q2");
+            Assert.AreEqual(1, _manager.GetQuestStep("q2"));
         }
     }
 }

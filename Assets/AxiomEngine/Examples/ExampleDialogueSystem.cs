@@ -50,6 +50,8 @@ namespace RPGPlatform.Examples
             public int GetQuestStep(string q) => 0;
             public void SetQuestStep(string q, int s) {}
             public bool IsQuestCompleted(string q) => false;
+            public bool CanStartQuest(string q) => true;
+            public void AcceptQuest(string q) {}
         }
 
         class MockDialogueRepository : IDialogueRepository

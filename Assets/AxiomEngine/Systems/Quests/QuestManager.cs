@@ -86,6 +86,40 @@ namespace RPGPlatform.Systems.Quests
             return _completedQuestIds.Contains(questId);
         }
 
+        public bool CanStartQuest(string questId)
+        {
+            if (_questSteps.ContainsKey(questId) || IsQuestCompleted(questId))
+                return false;
+
+            var questData = _questDatabase?.FirstOrDefault(q => q.QuestId == questId);
+            if (questData == null) return true; // Default to true if no data, or false? Let's say true for loose coupling.
+
+            // Level Check
+            if (_progression != null && _progression.CurrentLevel < questData.MinLevel)
+                return false;
+
+            // Prerequisite Quests
+            foreach (var reqId in questData.RequiredQuestIds)
+            {
+                if (!IsQuestCompleted(reqId))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public void AcceptQuest(string questId)
+        {
+            if (CanStartQuest(questId))
+            {
+                SetQuestStep(questId, 1);
+            }
+            else
+            {
+                Debug.LogWarning($"[QuestManager] Cannot accept quest {questId}: Prerequisites not met.");
+            }
+        }
+
         // --- Public Helper API for Game Logic ---
 
         public void CompleteQuest(string questId)

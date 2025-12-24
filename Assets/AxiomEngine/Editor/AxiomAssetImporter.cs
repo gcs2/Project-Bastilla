@@ -14,6 +14,7 @@ namespace RPGPlatform.Editor
     {
         private string locationName = "New Vorgossos Area";
         private EnvironmentProfile environmentProfile;
+        private GameObject npcPrefab;
         private string promptText = "Generate sci-fi marketplace props...";
 
         [MenuItem("Axiom/Generate Level Template")]
@@ -28,6 +29,7 @@ namespace RPGPlatform.Editor
             
             locationName = EditorGUILayout.TextField("Location Name", locationName);
             environmentProfile = (EnvironmentProfile)EditorGUILayout.ObjectField("Environment Profile", environmentProfile, typeof(EnvironmentProfile), false);
+            npcPrefab = (GameObject)EditorGUILayout.ObjectField("NPC Prefab (Inquisitor)", npcPrefab, typeof(GameObject), false);
 
             if (environmentProfile == null)
             {
@@ -64,14 +66,12 @@ namespace RPGPlatform.Editor
             GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
             floor.name = "MarketFloor_Auto";
             floor.transform.SetParent(env.transform);
-            
-            Vector3 fScale = environmentProfile != null ? environmentProfile.FloorScale : new Vector3(5, 1, 5);
-            floor.transform.localScale = fScale;
+            floor.transform.localScale = environmentProfile != null ? environmentProfile.FloorScale : new Vector3(5, 1, 5);
 
             // Try to find the AI-generated texture
             Texture2D floorTex = environmentProfile != null && environmentProfile.FloorTexture != null 
                 ? environmentProfile.FloorTexture 
-                : AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/AxiomEngine/GameSpecific/SunEater/Data/New Texture.png");
+                : AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/AxiomEngine/GameSpecific/SunEater/Data/VibeFloor_Diffuse.png");
 
             if (floorTex != null)
             {
@@ -118,6 +118,20 @@ namespace RPGPlatform.Editor
                 if (floor.GetComponent<Renderer>().sharedMaterial != null && environmentProfile?.StallPrefab == null)
                     stall.GetComponent<Renderer>().sharedMaterial = floor.GetComponent<Renderer>().sharedMaterial;
             }
+
+            // 6. Character Injection
+            if (npcPrefab != null)
+            {
+                GameObject npc = (GameObject)PrefabUtility.InstantiatePrefab(npcPrefab);
+                npc.name = "NPC_Inquisitor";
+                npc.transform.SetParent(root.transform);
+                npc.transform.position = new Vector3(2, 0, 5); // Facing player
+                npc.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+
+            // 7. Demo Bootstrapper
+            var bootstrapper = root.AddComponent<SunEater.Demo.PlayableDemoBootstrapper>();
+            // Auto-assign player search logic could go here
 
             Debug.Log($"[Axiom] LEVEL BOOTSTRAP COMPLETE: {locationName}");
             Debug.Log($"Generated data at: {dataPath}");

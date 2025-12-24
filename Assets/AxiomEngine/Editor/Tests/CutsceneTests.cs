@@ -27,8 +27,8 @@ namespace RPGPlatform.Tests
             _cutscenes = _holder.AddComponent<CutsceneController>();
             _logic = _holder.AddComponent<SunEaterCutsceneLogic>();
             
-            _travel.Initialize(new MockSceneLoader(), new MockProgressionService(), new MockQuestService());
-            _logic.Initialize(_travel, new MockMoralityService(), _cutscenes);
+            _travel.Initialize(new MockSceneLoader(), new TestingCommon.MockProgressionService(), new TestingCommon.MockQuestService());
+            _logic.Initialize(_travel, new TestingCommon.MockMoralityService(), _cutscenes);
         }
 
         [TearDown]
@@ -67,38 +67,6 @@ namespace RPGPlatform.Tests
         private class MockSceneLoader : ISceneLoader
         {
             public Task LoadSceneAsync(string name) => Task.CompletedTask;
-        }
-        
-        private class MockProgressionService : IProgressionService
-        {
-            public int CurrentLevel => 50;
-            public long CurrentXP => 0;
-            public long XPToNextLevel => 100;
-            public string CurrentTierId => "";
-            public float CurrentStatMultiplier => 1f;
-            public void AddXP(long a){}
-            public bool IsTierUnlocked(string t) => true;
-            public event System.Action<int> OnLevelUp;
-            public event System.Action<string> OnTierChanged;
-            public event System.Action<long, long> OnXPChanged;
-        }
-
-        private class MockQuestService : IQuestService
-        {
-            public bool GetFlag(string f) => true;
-            public void SetFlag(string f, bool v) {}
-            public int GetQuestStep(string q) => 100;
-            public void SetQuestStep(string q, int s) {}
-            public bool IsQuestCompleted(string q) => true;
-        }
-
-        private class MockMoralityService : IMoralityService
-        {
-             Dictionary<string, float> _vals = new Dictionary<string, float>();
-             public bool HasMorality => true;
-             public float GetAxisValue(string id) => _vals.ContainsKey(id) ? _vals[id] : 0;
-             public void ModifyAxis(string id, float d) => _vals[id] = d;
-             public bool MeetsRequirement(string id, float? min, float? max) => true;
         }
     }
 }

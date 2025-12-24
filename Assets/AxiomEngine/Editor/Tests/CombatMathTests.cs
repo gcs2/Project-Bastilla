@@ -85,10 +85,10 @@ namespace RPGPlatform.Tests
             var roll = new RollResult { IsSuccess = true, IsCriticalHit = true };
             var damage = _resolver.CalculateDamage(_attacker, _target, new Ability(_dummyAbility), roll);
             
-            // Default 1d6 + StrMod. If Crit, BaseDamage * 2.
-            // (1-6)*2 + 2 = 4-14.
-            Assert.GreaterOrEqual(damage.TotalDamage, 4);
-            Assert.LessOrEqual(damage.TotalDamage, 14);
+            // Default 1d6 + StrMod. If Crit, (BaseDamage + Bonus) * 2.
+            // (1-6 + 2) * 2 = 6-16.
+            Assert.GreaterOrEqual(damage.TotalDamage, 6);
+            Assert.LessOrEqual(damage.TotalDamage, 16);
             Assert.IsTrue(damage.WasCritical);
         }
 

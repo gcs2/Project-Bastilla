@@ -18,6 +18,8 @@ namespace RPGPlatform.Core
         int GetQuestStep(string questId);
         void SetQuestStep(string questId, int step);
         bool IsQuestCompleted(string questId);
+        bool CanStartQuest(string questId);
+        void AcceptQuest(string questId);
     }
 
     /// <summary>

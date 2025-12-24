@@ -36,6 +36,8 @@ namespace RPGPlatform.Systems.Dialogue
         // Singleton for simple access in prototypes (ServiceLocator is better)
         public static DialogueManager Instance { get; private set; }
 
+        public string CurrentConversationId => _currentConversation?.ConversationId ?? string.Empty;
+
         private void Awake()
         {
             Instance = this;

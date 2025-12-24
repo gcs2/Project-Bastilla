@@ -1,24 +1,27 @@
 # 🍾 THE AXIOM DISPATCH
 **Date:** December 23, 2025  
-**Subject:** VIBE CODING ASCENDANT: The Marketplace a Reality!
+**Subject:** PLAYABLE DEMO UNLOCKED: The Chantry Arrives on Vorgossos!
 
 ---
 
 ## 🌟 THE GOLDEN STATE ACHIEVED
 We did it! In a single, high-intensity session, **Project Bastilla** has evolved from a fragmented codebase into a synchronized, Git-backed, and aesthetically-driven powerhouse. 
 
-### 🟢 Breakthrough: The "Vorgossos" Vibe
-Using the **Unity AI Assistant**, we successfully synthesized the first true visual asset for the Sun Eater demo: the **Marketplace Floor**. 
+### 🟢 Breakthrough: The Playable "Vorgossos Incursion"
+We have successfully bridged the gap between static assets and interactive gameplay. 
+1.  **One-Click Spectacle**: The new `SunEaterDemoGenerator` builds a premium Vorgossos scene with Teal Fog, Heavy Bloom, and Cinematic Lighting in a single click.
+2.  **Dramatic Dialogue**: A high-fidelity branching conversation with a Chantry Inquisitor, exploring the theme of "Neural Incompatibility."
+3.  **Battle Join**: Seamless transition from a moral choice to a tactical combat encounter—witness the High-Matter swords in action!
 
 ![The First Vibe: Vorgossos Marketplace Floor and Automated Stalls](../Images/3_boxes.png)
-*Above: The automated level generator in action—cinematic teal lighting, AI-textured floor, and procedural marketplace structure.*
+*Above: The automated level generator now injects characters, configures URP aesthetics, and initializes the Playable Demo.*
 
 ---
 
 ## 🛠️ SESSION RECAP: WHAT WE BUILT
-1.  **Cider-V Stabilization**: Achieved a 100% passing test suite across all 15 core engine tests. The "Golden State" is locked.
-2.  **Git & GitHub Sync**: The project is now live at `https://github.com/gcs2/Project-Bastilla.git`.
-3.  **One-Button Bootstrap**: Upgraded the `AxiomAssetImporter` to generate textured, lit, and structured environments with a single click.
+1.  **Cider-V loop (25/25)**: Maintained a 100% passing test suite while integrating complex demo logic.
+2.  **Aesthetic Bootstrapping**: Automated URP post-processing (Vignette, Bloom, Tonemapping) for a premium look.
+3.  **One-Click Ingestion**: Upgraded the `AxiomAssetImporter` and created the `SunEaterDemoGenerator` for instantaneous playable scenes.
 4.  **Legacy Ingestion**: Preserved the original TDD and vision files for future reference.
 
 ---

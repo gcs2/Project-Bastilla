@@ -23,6 +23,8 @@
 8. **EditMode Integration**: `GameObject.Instantiate` is safe in EditMode tests ONLY if `Object.DestroyImmediate` is called in `[TearDown]`.
 9. **Cider-V Velocity**: Automated batch testing (`RunTests.ps1`) is the only way to maintain a "Stable Golden State" during rapid refactoring.
 10. **Automation Blueprints**: Use "One-Button Bootstrap" scripts (`AxiomDemoGenerator`) to ensure demo foundations are identical. Never manually configure core game data if it can be scripted.
+11. **Unity AI Toolkit Conflict**: The Unity AI Assistant (Muse) may throw `ArgumentException` if it encounters unknown categories like `Textures` during indexing. Ensure generated assets follow standard naming and search conventions to minimize toolkit friction.
+12. **Terminal Safety**: Avoid recursive `Remove-Item` or `dotnet build` on the root without explicit need, as batch mode environments may lack specific SDKs or have locked files.
 
 ---
 
@@ -38,6 +40,7 @@
 * **Rule:** All game data (stats, dialogue, quests) must reside in `ScriptableObjects` (`RPGPlatform.Data`).
 * **Rule:** Runtime logic (`RPGPlatform.Systems`) acts upon data but never owns its "master copy".
 * **Goal:** 100% of game content should be modifiable without re-compiling C# code.
+* **Immutable Test Rule:** All new functionality MUST be accompanied by dedicated test coverage. No feature is complete until it is verified via the CIDER-V loop.
 
 ### 1.3 Authoritative Knowledge Map
 When performing a task, always refer to the specific document governing that topic:
@@ -121,6 +124,7 @@ When performing a task, always refer to the specific document governing that top
 2.  **Mock Dependencies:** If a required system (e.g., `Inventory`) is missing, define its Interface first, then inject it.
 3.  **Testability:** Generated logic must be decoupled enough to run a NUnit test (e.g., separating Math from `MonoBehaviour`).
 5.  **Separation of Concerns:** Keep generic platform code separate from game-specific implementations. Use namespaces and folders to organize.
+6.  **Test Mandate:** Always verify that your changes are covered by a test in `Assets/AxiomEngine/Editor/Tests/`.
 
 ---
 
@@ -132,7 +136,11 @@ When performing a task, always refer to the specific document governing that top
 * **Command:** `powershell -ExecutionPolicy Bypass -File scripts/RunTests.ps1`.
 * **Note:** Close Unity Editor before running batch tests to avoid project locking.
 
-### 6.2 Regression Awareness
+### 6.2 Terminal Safety Mandate
+* **Rule:** Never run or attempt to run commands on the terminal that result in deletions or data corruption risk (e.g., `rm -rf`, recursive `Remove-Item` without filters, force-cleaning the repository).
+* **Action:** Use safe wrappers or targeted removals only for known temporary files (e.g., `unity_test_log.txt`).
+
+### 6.3 Regression Awareness
 * **Mindset:** Assume that interface changes will break Mocks in `Tests/` and Examples in `Examples/`.
 * **Action:**
 1. **Find a Prompt**: Look in `PlayableDemoGuide.md` (e.g., "Vorgossos Marketplace").
