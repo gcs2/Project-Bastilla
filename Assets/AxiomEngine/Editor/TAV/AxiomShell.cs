@@ -80,7 +80,18 @@ namespace RPGPlatform.Editor.TAV
             ServiceLocator.Register<IDialogueService>(Dialogue);
 
             // Subscribe to Events for Logging & Demo Glue
-            Dialogue.OnNodeStart += log => Debug.Log($"[TAV] DIALOGUE: {log.Text}");
+            Dialogue.OnNodeStart += node => {
+                Debug.Log($"[TAV] DIALOGUE: {node.Text}");
+                var responses = Dialogue.GetValidResponses();
+                if (responses.Count > 0)
+                {
+                    Debug.Log("[TAV] CHOICES:");
+                    for (int i = 0; i < responses.Count; i++)
+                    {
+                        Debug.Log($"  [{i}] {responses[i].Text}");
+                    }
+                }
+            };
             Dialogue.OnConversationEnd += OnDialogueEnded;
             
             Combat.OnCombatStarted += () => Debug.Log("[TAV] COMBAT STARTED");
@@ -113,8 +124,8 @@ namespace RPGPlatform.Editor.TAV
             switch (parts[0])
             {
                 case "talk":
-                    // talk inquisitor_spectacle
-                    if (parts.Length > 1) Dialogue.StartConversation(parts[1], null, null);
+                    if (parts.Length > 1) Dialogue.StartConversation(parts[1], Player, Inquisitor);
+                    else Debug.LogWarning("[TAV] Command 'talk' requires a conversation ID (e.g., 'talk inquisitor_spectacle').");
                     break;
                 case "choose":
                     // choose 0
@@ -127,10 +138,10 @@ namespace RPGPlatform.Editor.TAV
                     Dialogue.EndConversation();
                     break;
                 case "stat":
-                    Debug.Log($"[TAV] Morality (Humanism): {Morality.GetAxisValue("humanism")}");
+                    PrintFullState();
                     break;
                 case "help":
-                    Debug.Log("[TAV] Commands: talk [id], choose [index], stat, help");
+                    Debug.Log("[TAV] Commands: talk [id], choose [index], end, stat, help");
                     break;
                 default:
                     Debug.LogWarning($"[TAV] Unknown command: {parts[0]}");
@@ -138,14 +149,63 @@ namespace RPGPlatform.Editor.TAV
             }
         }
 
+        /// <summary>
+        /// Entry point for Batch Mode CLI execution.
+        /// Parses command-line arguments passed via -command [cmd]
+        /// </summary>
+        public static void ExecuteFromCLI()
+        {
+            Debug.Log("[AxiomShell] CLI Execution Started.");
+            string[] args = System.Environment.GetCommandLineArgs();
+            
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i] == "-command" && i < args.Length - 1)
+                {
+                    string fullCommand = args[i + 1];
+                    Debug.Log($"[AxiomShell] Executing CLI Command: {fullCommand}");
+                    Execute(fullCommand);
+                    return;
+                }
+            }
+            
+            Debug.LogWarning("[AxiomShell] No '-command' argument found in CLI call.");
+        }
+
         private static void OnDialogueEnded()
         {
             Debug.Log("[TAV] DIALOGUE ENDED");
-            if (Dialogue.CurrentConversationId == "inquisitor_spectacle")
+            if (Dialogue != null && Dialogue.CurrentConversationId == "inquisitor_spectacle")
             {
                 Debug.Log("[TAV] Transitioning to Combat (Demo Glue)...");
                 Combat.StartCombat(new List<ICombatant> { Player, Inquisitor });
             }
+        }
+
+        private static void PrintFullState()
+        {
+            Debug.Log("=================================================");
+            Debug.Log("          CURRENT GAME STATE (TAV)               ");
+            Debug.Log("=================================================");
+            
+            // Player Stats
+            Debug.Log($"[PLAYER] HP: {Player.Stats.CurrentHealth}/{Player.Stats.MaxHealth} | Team: {Player.Team}");
+            
+            // NPC Stats
+            Debug.Log($"[INQUISITOR] HP: {Inquisitor.Stats.CurrentHealth}/{Inquisitor.Stats.MaxHealth} | Team: {Inquisitor.Team}");
+            
+            // Morality
+            Debug.Log($"[MORALITY] Humanism: {Morality.GetAxisValue("humanism")}");
+            
+            // Quests
+            var activeQuests = Quests != null ? "Vorgossos Heretic (Active)" : "None";
+            Debug.Log($"[QUESTS] {activeQuests}");
+            
+            // Combat State
+            var combatStatus = Combat.IsInCombat ? "IN COMBAT" : "EXPLORING";
+            Debug.Log($"[STATUS] {combatStatus}");
+            
+            Debug.Log("=================================================");
         }
 
         private class EditorDialogueRepository : IDialogueRepository

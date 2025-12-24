@@ -8,10 +8,23 @@ $LogPath = "tav_cli.log"
 
 function Execute-AxiomCommand($cmd) {
     Write-Host "`n[EXECUTING] $cmd..." -ForegroundColor Cyan
-    $process = Start-Process -FilePath $UnityPath -ArgumentList "-batchmode", "-nographics", "-projectPath .", "-executeMethod RPGPlatform.Editor.TAV.AxiomShell.ExecuteFromCLI", "-command `"$cmd`"", "-quit", "-logFile $LogPath" -Wait -PassThru
+    $process = Start-Process -FilePath $UnityPath -ArgumentList "-batchmode", "-nographics", "-projectPath .", "-executeMethod RPGPlatform.Editor.TAV.AxiomShell.ExecuteFromCLI", "-command", "`"$cmd`"", "-quit", "-logFile $LogPath" -Wait -PassThru
     
     if (Test-Path $LogPath) {
-        $logs = Get-Content $LogPath | Where-Object { $_ -match "^\[TAV\]" -or $_ -match "^\[STATE\]" -or $_ -match "^\[DialogueManager\]" }
+        $fullLog = Get-Content $LogPath
+        $logs = $fullLog | Where-Object { $_ -match "^\[TAV\]" -or $_ -match "^\[STATE\]" -or $_ -match "^\[DialogueManager\]" -or $_ -match "^\[AxiomShell\]" }
+        
+        if ($logs.Count -eq 0 -and $fullLog.Count -gt 0) {
+            if ($fullLog -match "Aborting batchmode") {
+                Write-Host "[ERROR] Could not run TAV. It looks like the Unity Editor is already open with this project." -ForegroundColor Red
+                Write-Host "Please close the Unity Editor to use the Standalone CLI, or use the 'Axiom Shell' within Unity (Window > Axiom Engine > Axiom Shell)." -ForegroundColor Yellow
+            }
+            else {
+                Write-Host "[WARNING] Command executed but produced no TAV logs. Full output follows:" -ForegroundColor Yellow
+                $fullLog | Select-Object -Last 10
+            }
+        }
+
         foreach ($line in $logs) {
             if ($line -match "FAILURE|ERR") { Write-Host $line -ForegroundColor Red }
             elseif ($line -match "SUCCESS|VICTORY") { Write-Host $line -ForegroundColor Green }
@@ -19,6 +32,9 @@ function Execute-AxiomCommand($cmd) {
             else { Write-Host $line }
         }
         Remove-Item $LogPath -ErrorAction SilentlyContinue
+    }
+    else {
+        Write-Host "[ERROR] Unity failed to generate a log file. Is the path to Unity.exe correct?" -ForegroundColor Red
     }
 }
 
