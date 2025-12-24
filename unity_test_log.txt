@@ -1,0 +1,23 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/staging' branch; Version is '6000.3.2f1 (a9779f353c9b) revision 11106207'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-zephy" at "2025-12-24T11:14:19.3314096Z"
+OS: 'Windows 11  (10.0.26200) 64bit Core' Language: 'en' Physical Memory: 32189 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+Date: 2025-12-24T11:14:19Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.2f1\Editor\Unity.exe
+-batchmode
+-projectPath
+C:\Users\zephy\Project Bastilla
+-runTests
+-testPlatform
+EditMode
+-testResults
+TestResults.xml
+-nographics
+-logfile
+unity_test_log.txt
+Successfully changed project path to: C:\Users\zephy\Project Bastilla
+C:/Users/zephy/Project Bastilla
+Exiting without the bug reporter. Application will terminate with return code 1

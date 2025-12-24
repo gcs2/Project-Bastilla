@@ -67,16 +67,19 @@ namespace RPGPlatform.Tests
         public void Test_SystemInitialization()
         {
             // Act
-            // We simulate Start() by calling the private method or just letting Unity do its thing 
-            // but in EditMode we usually have to call init methods manually.
-            // PlayableDemoBootstrapper calls InitializeSystems in Start.
-            
-            _bootstrapper.SendMessage("Start"); // Force Unity lifecycle
+            Debug.Log("Test_SystemInitialization: Manually calling Start on Bootstrapper");
+            _bootstrapper.SendMessage("Start"); 
 
             // Assert
-            Assert.IsTrue(ServiceLocator.IsRegistered<IMoralityService>(), "Morality service should be registered.");
-            Assert.IsTrue(ServiceLocator.IsRegistered<IQuestService>(), "Quest service should be registered.");
-            Assert.IsTrue(ServiceLocator.IsRegistered<IDialogueService>(), "Dialogue service should be registered.");
+            bool morality = ServiceLocator.IsRegistered<IMoralityService>();
+            bool quest = ServiceLocator.IsRegistered<IQuestService>();
+            bool dialogue = ServiceLocator.IsRegistered<IDialogueService>();
+            
+            Debug.Log($"Services Registered - Morality: {morality}, Quest: {quest}, Dialogue: {dialogue}");
+
+            Assert.IsTrue(morality, "Morality service should be registered.");
+            Assert.IsTrue(quest, "Quest service should be registered.");
+            Assert.IsTrue(dialogue, "Dialogue service should be registered.");
         }
 
         [Test]
@@ -88,10 +91,19 @@ namespace RPGPlatform.Tests
             var combatManager = _root.GetComponent<CombatManager>();
             
             bool combatStarted = false;
-            combatManager.OnCombatStarted += () => combatStarted = true;
+            combatManager.OnCombatStarted += () => 
+            {
+                Debug.Log("Test_DialogueToCombatTransition: Combat Started Event Fired");
+                combatStarted = true;
+            };
 
             // Act
-            // Simulate dialogue ending on the spectacle ID
+            // Manually set the conversation ID on the dialogue manager so the bootstrapper sees it
+            Debug.Log("Test_DialogueToCombatTransition: Starting conversation to set state");
+            dialogueManager.StartConversation(_dialogueData, _player.GetComponent<ICombatant>(), _inquisitor.GetComponent<ICombatant>());
+            
+            Debug.Log("Test_DialogueToCombatTransition: Simulating OnDialogueEnded");
+            // Direct call to ensure it hits the private method if possible, or use SendMessage with logs
             _bootstrapper.SendMessage("OnDialogueEnded");
 
             // Assert
@@ -105,13 +117,22 @@ namespace RPGPlatform.Tests
             _bootstrapper.SendMessage("Start");
             var combatManager = _root.GetComponent<CombatManager>();
             var questManager = _root.GetComponent<QuestManager>();
-            
+            var dialogueManager = _root.GetComponent<DialogueManager>();
+
             // Start combat first
+            Debug.Log("Test_QuestCompletionOnVictory: Setting up Combat State");
+            dialogueManager.StartConversation(_dialogueData, _player.GetComponent<ICombatant>(), _inquisitor.GetComponent<ICombatant>());
             _bootstrapper.SendMessage("OnDialogueEnded");
             
             // Act
-            // Simulate Victory
+            Debug.Log("Test_QuestCompletionOnVictory: Ending Combat with Victory");
             combatManager.EndCombat(true);
+
+            // Assert
+            bool completed = questManager.IsQuestCompleted(_questData.QuestId);
+            Debug.Log($"Test_QuestCompletionOnVictory: Quest Completed? {completed}");
+            Assert.IsTrue(completed, "Quest should be completed upon combat victory.");
+        }
 
             // Assert
             Assert.IsTrue(questManager.IsQuestCompleted(_questData.QuestId), "Quest should be completed upon combat victory.");

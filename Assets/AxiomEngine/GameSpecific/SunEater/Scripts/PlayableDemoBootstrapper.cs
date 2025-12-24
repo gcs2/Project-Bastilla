@@ -64,6 +64,7 @@ namespace SunEater.Demo
             ServiceLocator.Register<IQuestService>(_quest);
 
             _dialogue.Initialize(ServiceLocator.Get<IMoralityService>(), _quest, null, null, null);
+            ServiceLocator.Register<IDialogueService>(_dialogue);
             _dialogue.OnConversationEnd += OnDialogueEnded;
             _dialogue.OnNodeStart += OnDialogueNodeStart;
 
@@ -73,7 +74,7 @@ namespace SunEater.Demo
         private void StartInquisitorDialogue()
         {
             Debug.Log("[PlayableDemo] Inquisitor silhouettes against the toxic sky...");
-            _dialogue.StartConversation(_introDialogue.ConversationId, null, (ICombatant)_inquisitor);
+            _dialogue.StartConversation(_introDialogue, null, (ICombatant)_inquisitor);
         }
 
         private void OnDialogueNodeStart(DialogueNode node)

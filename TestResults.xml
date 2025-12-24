@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="28" result="Failed(Child)" total="28" passed="25" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.1778757">
+  <test-suite type="TestSuite" id="1000" name="Project Bastilla" fullname="Project Bastilla" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.177876" total="28" passed="25" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1038" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/zephy/Project Bastilla/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.168830" total="28" passed="25" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="16796" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1039" name="RPGPlatform" fullname="RPGPlatform" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.167819" total="28" passed="25" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1040" name="Tests" fullname="RPGPlatform.Tests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.167198" total="28" passed="25" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="CombatantTests" fullname="RPGPlatform.Tests.CombatantTests" classname="RPGPlatform.Tests.CombatantTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.041712" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="Test_DamageAndHealth" fullname="RPGPlatform.Tests.CombatantTests.Test_DamageAndHealth" methodname="Test_DamageAndHealth" classname="RPGPlatform.Tests.CombatantTests" runstate="Runnable" seed="565378425" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.020072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Combatant]  takes 30 Physical damage. Health: 100 → 70
+[Combatant]  takes 80 Energy damage. Health: 70 → 0
+[Combatant]  has been defeated!
+]]></output>
+            </test-case>
+            <test-case id="1004" name="Test_DefeatTrigger" fullname="RPGPlatform.Tests.CombatantTests.Test_DefeatTrigger" methodname="Test_DefeatTrigger" classname="RPGPlatform.Tests.CombatantTests" runstate="Runnable" seed="262476606" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001420" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Combatant]  takes 100 Physical damage. Health: 100 → 0
+[Combatant]  has been defeated!
+]]></output>
+            </test-case>
+            <test-case id="1003" name="Test_Healing" fullname="RPGPlatform.Tests.CombatantTests.Test_Healing" methodname="Test_Healing" classname="RPGPlatform.Tests.CombatantTests" runstate="Runnable" seed="133266703" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001136" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Combatant]  takes 50 Physical damage. Health: 100 → 50
+]]></output>
+            </test-case>
+            <test-case id="1005" name="Test_InitializationWithData" fullname="RPGPlatform.Tests.CombatantTests.Test_InitializationWithData" methodname="Test_InitializationWithData" classname="RPGPlatform.Tests.CombatantTests" runstate="Runnable" seed="1779896401" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.000728" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1006" name="CombatMathTests" fullname="RPGPlatform.Tests.CombatMathTests" classname="RPGPlatform.Tests.CombatMathTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.022543" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1009" name="Test_CriticalDamage" fullname="RPGPlatform.Tests.CombatMathTests.Test_CriticalDamage" methodname="Test_CriticalDamage" classname="RPGPlatform.Tests.CombatMathTests" runstate="Runnable" seed="1656989543" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.008379" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="Test_DamageCalculation" fullname="RPGPlatform.Tests.CombatMathTests.Test_DamageCalculation" methodname="Test_DamageCalculation" classname="RPGPlatform.Tests.CombatMathTests" runstate="Runnable" seed="813686315" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="Test_ResolveAttack_Hit" fullname="RPGPlatform.Tests.CombatMathTests.Test_ResolveAttack_Hit" methodname="Test_ResolveAttack_Hit" classname="RPGPlatform.Tests.CombatMathTests" runstate="Runnable" seed="402331333" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001985" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="Test_StatusEffect_DamageOverTime" fullname="RPGPlatform.Tests.CombatMathTests.Test_StatusEffect_DamageOverTime" methodname="Test_StatusEffect_DamageOverTime" classname="RPGPlatform.Tests.CombatMathTests" runstate="Runnable" seed="690180823" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.005436" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Effect] Poison applied to 
+[Combatant]  takes 5 Physical damage. Health: 50 → 45
+[Combatant]  takes 5 Physical damage. Health: 45 → 40
+[Effect] Poison removed from 
+]]></output>
+            </test-case>
+            <test-case id="1011" name="Test_StatusEffect_StatBuff" fullname="RPGPlatform.Tests.CombatMathTests.Test_StatusEffect_StatBuff" methodname="Test_StatusEffect_StatBuff" classname="RPGPlatform.Tests.CombatMathTests" runstate="Runnable" seed="1479330144" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.002758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Effect] Haste applied to 
+[Effect] Haste removed from 
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1012" name="CombatTests" fullname="RPGPlatform.Tests.CombatTests" classname="RPGPlatform.Tests.CombatTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.016314" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1014" name="Test_CombatStateMachine_Flow" fullname="RPGPlatform.Tests.CombatTests.Test_CombatStateMachine_Flow" methodname="Test_CombatStateMachine_Flow" classname="RPGPlatform.Tests.CombatTests" runstate="Runnable" seed="460537266" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.011746" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TurnManager] Starting Combat...
+[TurnManager] No resolver, sorting by raw Dex stat.
+[TurnManager] Round 1 Start
+[Turn] Hero's turn.
+[CombatState] Entering Planning
+[Turn] Villain's turn.
+]]></output>
+            </test-case>
+            <test-case id="1013" name="Test_InitiativeOrder" fullname="RPGPlatform.Tests.CombatTests.Test_InitiativeOrder" methodname="Test_InitiativeOrder" classname="RPGPlatform.Tests.CombatTests" runstate="Runnable" seed="805018549" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.002797" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TurnManager] Starting Combat...
+[TurnManager] No resolver, sorting by raw Dex stat.
+[TurnManager] Round 1 Start
+[Turn] Enemy's turn.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1015" name="CutsceneTests" fullname="RPGPlatform.Tests.CutsceneTests" classname="RPGPlatform.Tests.CutsceneTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.011121" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1017" name="Test_Cutscene_LogicBranching" fullname="RPGPlatform.Tests.CutsceneTests.Test_Cutscene_LogicBranching" methodname="Test_Cutscene_LogicBranching" classname="RPGPlatform.Tests.CutsceneTests" runstate="Runnable" seed="2013386460" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.007859" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[Logic executed without exception]]></message>
+              </reason>
+              <output><![CDATA[[TravelManager] departing for ...
+[TravelManager] arrived at 
+[SunEaterLogic] Arrived at Vorgossos. Humanity: 0
+[SunEaterLogic] Triggering Standard Landing Timeline
+]]></output>
+            </test-case>
+            <test-case id="1016" name="Test_Travel_BasicDiscovery" fullname="RPGPlatform.Tests.CutsceneTests.Test_Travel_BasicDiscovery" methodname="Test_Travel_BasicDiscovery" classname="RPGPlatform.Tests.CutsceneTests" runstate="Runnable" seed="1060886246" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001610" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[TravelManager] departing for Safe Planet...
+[TravelManager] arrived at Safe Planet
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1018" name="DemoBootstrapperTests" fullname="RPGPlatform.Tests.DemoBootstrapperTests" classname="RPGPlatform.Tests.DemoBootstrapperTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.023499" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="Test_DialogueToCombatTransition" fullname="RPGPlatform.Tests.DemoBootstrapperTests.Test_DialogueToCombatTransition" methodname="Test_DialogueToCombatTransition" classname="RPGPlatform.Tests.DemoBootstrapperTests" runstate="Runnable" seed="768300297" result="Failed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.012330" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Combat should have started after dialogue ended on the spectacle ID.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at RPGPlatform.Tests.DemoBootstrapperTests.Test_DialogueToCombatTransition () [0x00075] in C:\Users\zephy\Project Bastilla\Assets\AxiomEngine\Editor\Tests\DemoBootstrapperTests.cs:100
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[ServiceLocator] Cleared all services
+Assertion failed on expression: 'ShouldRunBehaviour()'
+[ServiceLocator] Registered service: IMoralityService
+[ServiceLocator] Registered service: IQuestService
+[ServiceLocator] Registered service: IDialogueService
+[PlayableDemo] Sun Eater Systems Synchronized.
+[DialogueManager] Starting conversation 'inquisitor_spectacle' with 
+[DialogueManager] Conversation Ended
+Assertion failed on expression: 'ShouldRunBehaviour()'
+]]></output>
+            </test-case>
+            <test-case id="1021" name="Test_QuestCompletionOnVictory" fullname="RPGPlatform.Tests.DemoBootstrapperTests.Test_QuestCompletionOnVictory" methodname="Test_QuestCompletionOnVictory" classname="RPGPlatform.Tests.DemoBootstrapperTests" runstate="Runnable" seed="810583463" result="Failed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.004165" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Quest should be completed upon combat victory.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at RPGPlatform.Tests.DemoBootstrapperTests.Test_QuestCompletionOnVictory () [0x0006a] in C:\Users\zephy\Project Bastilla\Assets\AxiomEngine\Editor\Tests\DemoBootstrapperTests.cs:121
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[ServiceLocator] Cleared all services
+Assertion failed on expression: 'ShouldRunBehaviour()'
+[ServiceLocator] Registered service: IMoralityService
+[ServiceLocator] Registered service: IQuestService
+[ServiceLocator] Registered service: IDialogueService
+[PlayableDemo] Sun Eater Systems Synchronized.
+[DialogueManager] Starting conversation 'inquisitor_spectacle' with 
+[DialogueManager] Conversation Ended
+Assertion failed on expression: 'ShouldRunBehaviour()'
+]]></output>
+            </test-case>
+            <test-case id="1019" name="Test_SystemInitialization" fullname="RPGPlatform.Tests.DemoBootstrapperTests.Test_SystemInitialization" methodname="Test_SystemInitialization" classname="RPGPlatform.Tests.DemoBootstrapperTests" runstate="Runnable" seed="137847532" result="Failed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.004657" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Assert] Assertion failed on expression: 'ShouldRunBehaviour()''. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Component:SendMessage (string)
+RPGPlatform.Tests.DemoBootstrapperTests:Test_SystemInitialization () (at Assets/AxiomEngine/Editor/Tests/DemoBootstrapperTests.cs:74)
+System.Reflection.MethodBase:Invoke (object,object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[ServiceLocator] Cleared all services
+Assertion failed on expression: 'ShouldRunBehaviour()'
+[ServiceLocator] Registered service: IMoralityService
+[ServiceLocator] Registered service: IQuestService
+[ServiceLocator] Registered service: IDialogueService
+[PlayableDemo] Sun Eater Systems Synchronized.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1022" name="ProgressionTests" fullname="RPGPlatform.Tests.ProgressionTests" classname="RPGPlatform.Tests.ProgressionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.011007" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1023" name="Test_Leveling_Curve" fullname="RPGPlatform.Tests.ProgressionTests.Test_Leveling_Curve" methodname="Test_Leveling_Curve" classname="RPGPlatform.Tests.ProgressionTests" runstate="Runnable" seed="2146493455" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.007319" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ProgressionManager] Leveled Up! Now Level 2
+[ProgressionManager] Leveled Up! Now Level 3
+[ProgressionManager] Leveled Up! Now Level 4
+[ProgressionManager] Leveled Up! Now Level 5
+[ProgressionManager] Leveled Up! Now Level 6
+[ProgressionManager] Leveled Up! Now Level 7
+[ProgressionManager] Leveled Up! Now Level 8
+[ProgressionManager] Leveled Up! Now Level 9
+[ProgressionManager] Leveled Up! Now Level 10
+[ProgressionManager] Leveled Up! Now Level 11
+[ProgressionManager] Tier Changed! initiate -> knight
+]]></output>
+            </test-case>
+            <test-case id="1024" name="Test_SunEater_ItemGeneration" fullname="RPGPlatform.Tests.ProgressionTests.Test_SunEater_ItemGeneration" methodname="Test_SunEater_ItemGeneration" classname="RPGPlatform.Tests.ProgressionTests" runstate="Runnable" seed="678628391" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.002021" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[HighMatterSword] Generated 'Unstable' sword for Neural-Link 8. Dmg: 1d6
+[HighMatterSword] Generated 'Ascendant' sword for Neural-Link 22. Dmg: 2d8 + 36
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1025" name="QuestTests" fullname="RPGPlatform.Tests.QuestTests" classname="RPGPlatform.Tests.QuestTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.011545" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1026" name="Test_QuestCycle_Flow" fullname="RPGPlatform.Tests.QuestTests.Test_QuestCycle_Flow" methodname="Test_QuestCycle_Flow" classname="RPGPlatform.Tests.QuestTests" runstate="Runnable" seed="1734704411" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.005512" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[QuestManager] Started Quest: q_kill_rats
+[QuestManager] Quest q_kill_rats updated to Step 1
+[QuestManager] Quest q_kill_rats updated to Step 2
+[QuestManager] Completed Quest: q_kill_rats
+[QuestManager] Granted 500 XP
+]]></output>
+            </test-case>
+            <test-case id="1027" name="Test_QuestPrerequisites" fullname="RPGPlatform.Tests.QuestTests.Test_QuestPrerequisites" methodname="Test_QuestPrerequisites" classname="RPGPlatform.Tests.QuestTests" runstate="Runnable" seed="422470280" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.003743" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[QuestManager] Cannot accept quest q2: Prerequisites not met.
+[QuestManager] Started Quest: q1
+[QuestManager] Quest q1 updated to Step 1
+[QuestManager] Completed Quest: q1
+[QuestManager] Started Quest: q2
+[QuestManager] Quest q2 updated to Step 1
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1028" name="SubsystemInDepthTests" fullname="RPGPlatform.Tests.SubsystemInDepthTests" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.022023" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1032" name="Test_Dialogue_Interjections" fullname="RPGPlatform.Tests.SubsystemInDepthTests.Test_Dialogue_Interjections" methodname="Test_Dialogue_Interjections" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" seed="1457314040" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.007501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[DialogueManager] Starting conversation 'interject_convo' with Mock Combatant
+[DialogueManager] Node: Hello (Speaker: Mock Combatant)
+[DialogueManager] Starting conversation 'interject_convo' with Mock Combatant
+[DialogueManager] Auto-Interjection triggering: Interjection
+[DialogueManager] Node: You found me! (Speaker: Mock Combatant)
+]]></output>
+            </test-case>
+            <test-case id="1033" name="Test_MoralityState_EventsAndClamping" fullname="RPGPlatform.Tests.SubsystemInDepthTests.Test_MoralityState_EventsAndClamping" methodname="Test_MoralityState_EventsAndClamping" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" seed="1050295778" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.004289" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[MoralityState] light_dark: 50.0 -> 60.0 (delta: 10.0)
+[MoralityState] light_dark: 60.0 -> 100.0 (delta: 100.0)
+[MoralityState] light_dark: 100.0 -> 0.0 (delta: -200.0)
+]]></output>
+            </test-case>
+            <test-case id="1031" name="Test_Quest_EventsAndRewards" fullname="RPGPlatform.Tests.SubsystemInDepthTests.Test_Quest_EventsAndRewards" methodname="Test_Quest_EventsAndRewards" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" seed="1504562158" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.002767" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[QuestManager] Started Quest: test_quest
+[QuestManager] Quest test_quest updated to Step 1
+[QuestManager] Completed Quest: test_quest
+[QuestManager] Granted 1000 XP
+]]></output>
+            </test-case>
+            <test-case id="1030" name="Test_ResourcePool_SpendAndRegen" fullname="RPGPlatform.Tests.SubsystemInDepthTests.Test_ResourcePool_SpendAndRegen" methodname="Test_ResourcePool_SpendAndRegen" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" seed="627656527" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001748" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="Test_ServiceLocator_Flow" fullname="RPGPlatform.Tests.SubsystemInDepthTests.Test_ServiceLocator_Flow" methodname="Test_ServiceLocator_Flow" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" seed="1970256662" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001796" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ServiceLocator] Cleared all services
+[ServiceLocator] Registered service: IMoralityService
+[ServiceLocator] Unregistered service: IMoralityService
+]]></output>
+            </test-case>
+            <test-case id="1029" name="Test_StatusEffect_StackingAndDuration" fullname="RPGPlatform.Tests.SubsystemInDepthTests.Test_StatusEffect_StackingAndDuration" methodname="Test_StatusEffect_StackingAndDuration" classname="RPGPlatform.Tests.SubsystemInDepthTests" runstate="Runnable" seed="1976411546" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001597" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Effect]  applied to 
+[Effect] Stack added to  on  (2 stacks)
+[Effect]  removed from 
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1035" name="SystemTests" fullname="RPGPlatform.Tests.SystemTests" classname="RPGPlatform.Tests.SystemTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.004796" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1037" name="Test_Dialogue_Alignment_Gating" fullname="RPGPlatform.Tests.SystemTests.Test_Dialogue_Alignment_Gating" methodname="Test_Dialogue_Alignment_Gating" classname="RPGPlatform.Tests.SystemTests" runstate="Runnable" seed="2032805546" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[DialogueManager] Starting conversation 'unit_test_convo' with Mock Combatant
+[DialogueManager] Node: Root Node (Speaker: Mock Combatant)
+]]></output>
+            </test-case>
+            <test-case id="1036" name="Test_Morality_Scaling_And_Clamping" fullname="RPGPlatform.Tests.SystemTests.Test_Morality_Scaling_And_Clamping" methodname="Test_Morality_Scaling_And_Clamping" classname="RPGPlatform.Tests.SystemTests" runstate="Runnable" seed="1391428758" result="Passed" start-time="2025-12-24 11:19:03Z" end-time="2025-12-24 11:19:03Z" duration="0.001459" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[MoralityState] humanism: 0.0 -> 50.0 (delta: 50.0)
+[MoralityState] humanism: 50.0 -> 100.0 (delta: 100.0)
+[MoralityState] humanism: 100.0 -> -100.0 (delta: -250.0)
+Saving results to: C:/Users/zephy/AppData/LocalLow/DefaultCompany/Project Bastilla\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
