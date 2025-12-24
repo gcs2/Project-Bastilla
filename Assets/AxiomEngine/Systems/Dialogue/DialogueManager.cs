@@ -164,9 +164,9 @@ namespace RPGPlatform.Systems.Dialogue
         public void EndConversation()
         {
             Debug.Log("[DialogueManager] Conversation Ended");
+            OnConversationEnd?.Invoke();
             _currentConversation = null;
             _currentNode = null;
-            OnConversationEnd?.Invoke();
         }
 
         private DialogueContext CreateContext()

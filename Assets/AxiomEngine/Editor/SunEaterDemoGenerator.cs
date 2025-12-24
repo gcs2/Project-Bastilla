@@ -97,7 +97,7 @@ namespace RPGPlatform.Editor
 
             asset.Nodes = new List<DialogueNode> { root, new DialogueNode { NodeId = "logic", Text = "Knowledge is the path to ruin without Faith." }, new DialogueNode { NodeId = "combat", Text = "So be it. The Emperor's justice is swift." } };
             
-            AssetDatabase.CreateAsset(asset, $"{path}/Dialogue_Inquisitor.asset");
+            AssetDatabase.CreateAsset(asset, $"{path}/Conversation_inquisitor_spectacle.asset");
             return asset;
         }
 

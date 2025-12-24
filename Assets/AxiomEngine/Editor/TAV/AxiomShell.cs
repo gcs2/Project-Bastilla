@@ -152,7 +152,14 @@ namespace RPGPlatform.Editor.TAV
         {
             public RPGPlatform.Data.ConversationData LoadConversation(string conversationId)
             {
+                // Try direct search by name first
                 var guids = AssetDatabase.FindAssets($"t:ConversationData {conversationId}");
+                if (guids.Length == 0)
+                {
+                    // Fallback: search all ConversationData and check internal ID
+                    guids = AssetDatabase.FindAssets("t:ConversationData");
+                }
+
                 foreach (var guid in guids)
                 {
                     var path = AssetDatabase.GUIDToAssetPath(guid);
@@ -160,6 +167,8 @@ namespace RPGPlatform.Editor.TAV
                     if (asset != null && asset.ConversationId == conversationId)
                         return asset;
                 }
+                
+                Debug.LogError($"[EditorDialogueRepository] FAILED to resolve ConversationId: {conversationId}");
                 return null;
             }
         }
